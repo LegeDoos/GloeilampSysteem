@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Lightswitch
 {
-    internal class Stoboscoop : Lamp
+    internal class Stoboscope : Lamp
     {
         int frequency;
 
-        public Stoboscoop(int id, string name, int freq) : base(id, name)
+        public Stoboscope(int id, string name, int freq) : base(id, name)
         {
             frequency = freq;
         }

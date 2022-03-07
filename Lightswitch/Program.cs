@@ -6,7 +6,7 @@ Console.WriteLine("Lamp and Lightswitch example");
 Lamp regularLamp = new Lamp(1, "Normale lamp");
 Lamp regularLamp2 = new Lamp(2, "Normale lamp 2");
 
-Lamp stroboscoop = new Stoboscoop(3, "Stroboscoop", 100);
+Lamp stroboscoop = new Stoboscope(3, "Stroboscoop", 100);
 LightSwitch theSwitch = new LightSwitch(1, "De schakelaar");
 theSwitch.ConnectLamp(regularLamp);
 theSwitch.ConnectLamp(regularLamp2);
