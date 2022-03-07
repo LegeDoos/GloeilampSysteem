@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Lightswitch
 {
-    internal class Stoboscope : Lamp
+    internal class Stoboscoop : Lamp
     {
         int frequency;
 
-        public Stoboscope(int id, string name, int freq) : base(id, name)
+        public Stoboscoop(int id, string name, int freq) : base(id, name)
         {
             frequency = freq;
         }
@@ -23,7 +23,7 @@ namespace Lightswitch
             while (true)
             {
                 Thread.Sleep(msPauze);
-                if (isOn)
+                if (IsOn)
                 {
                     base.Uitzetten();
                 }

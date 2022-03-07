@@ -9,27 +9,35 @@ namespace Lightswitch
     internal class LightSwitch
     {
         int id;
+
         string name;
+        public string Name { get => name; set => name = value; }
+
         bool isOn;
-        List<Lamp> lamps = new List<Lamp> ();
+        public bool IsOn { get => isOn; set => isOn = value; }
+
+
+        List<Lamp> lamps = new List<Lamp>();
+        public List<Lamp> Lamps { get => lamps; set => lamps = value; }
 
         public LightSwitch(int id, string name)
         {
             this.id = id;
-            this.name = name;
-            isOn = false;
+            this.Name = name;
+            IsOn = false;
         }
+
 
         public void ConnectLamp(Lamp theLamp)
         {
-            lamps.Add(theLamp);
+            Lamps.Add(theLamp);
             theLamp.ConntectLightSwitch(this);
         }
 
         public void Toggle()
         {
             // zet de lampen aan
-            foreach (var lamp in lamps)
+            foreach (var lamp in Lamps)
             {
                 lamp.Aanzetten();
             }
