@@ -1,0 +1,3 @@
+# GloeilampSysteem
+
+![ClassDiagram](ClassDiagram.jpg)
