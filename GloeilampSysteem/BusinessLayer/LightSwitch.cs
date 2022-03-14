@@ -50,6 +50,8 @@ namespace GloeilampSysteem.BusinessLayer
         // Data access:
         public void CreateInDb()
         {
+            // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
+
             iDataAccessLayer dal = new JsonDAL(); // Todo singleton pattern toepassen
             var result = dal.CreateLightSwitch(this);
             this.Id = result.Id;

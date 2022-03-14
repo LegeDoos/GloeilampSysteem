@@ -17,7 +17,7 @@ namespace GloeilampSysteem.BusinessLayer
 
         public string State { get; set; }
 
-        [System.Text.Json.Serialization.JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore] // json serializer loop error voorkomen
         public LightSwitch? LightSwitch { get; set; }
 
         
