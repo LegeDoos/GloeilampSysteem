@@ -31,17 +31,16 @@ namespace GloeilampSysteem.BusinessLayer
         {
             IsOn = true;
             State = "Aan";
-            Console.WriteLine($"Lamp {this.Name} staat {this.State}!");
         }
+
 
         public virtual void Uitzetten()
         {
             IsOn = false;
             State = "Uit";
-            Console.WriteLine($"Lamp {this.Name} staat {this.State}!");
-
         }
-        public void ConntectLightSwitch(LightSwitch theSwitch)
+
+        public void ConnectLightswitch(LightSwitch theSwitch)
         {
             this.LightSwitch = theSwitch;
         }
@@ -49,13 +48,13 @@ namespace GloeilampSysteem.BusinessLayer
         // Data access:
         public static Lamp GetLightswitchByIdFromDb(int id)
         {
-            iDataAccessLayer dal = new InMemoryDAL();
+            iDataAccessLayer dal = new JsonDAL();
             return dal.GetLampById(id);
         }
 
         public void DeleteInDb()
         {
-            iDataAccessLayer dal = new InMemoryDAL();
+            iDataAccessLayer dal = new JsonDAL();
             dal.DeleteLampById(this);
         }
     }

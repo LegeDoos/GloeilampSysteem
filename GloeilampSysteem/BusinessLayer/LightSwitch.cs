@@ -28,7 +28,7 @@ namespace GloeilampSysteem.BusinessLayer
         public void ConnectLamp(Lamp theLamp)
         {
             Lamps.Add(theLamp);
-            theLamp.ConntectLightSwitch(this);
+            theLamp.ConnectLightswitch(this);
         }
 
         public void Toggle()
@@ -36,33 +36,46 @@ namespace GloeilampSysteem.BusinessLayer
             // zet de lampen aan
             foreach (var lamp in Lamps)
             {
-                lamp.Aanzetten();
+                if (lamp.IsOn)
+                {
+                    lamp.Uitzetten();
+                }
+                else
+                {
+                    lamp.Aanzetten();
+                }
             }
         }
 
         // Data access:
         public void CreateInDb()
         {
-            iDataAccessLayer dal = new InMemoryDAL(); // Todo singleton pattern toepassen
+            iDataAccessLayer dal = new JsonDAL(); // Todo singleton pattern toepassen
             var result = dal.CreateLightSwitch(this);
             this.Id = result.Id;
         }
 
         public static List<LightSwitch> GetLightSwitchesFromDb()
         {
-            iDataAccessLayer dal = new InMemoryDAL(); // Todo singleton pattern toepassen
+            iDataAccessLayer dal = new JsonDAL(); // Todo singleton pattern toepassen
             return dal.GetLightswitches();
         }
 
         public static LightSwitch GetLightswitchByIdFromDb(int id)
         {
-            iDataAccessLayer dal = new InMemoryDAL();
+            iDataAccessLayer dal = new JsonDAL();
             return dal.GetLightSwitchById(id);
+        }
+
+        public LightSwitch UpdateInDb()
+        {
+            iDataAccessLayer dal = new JsonDAL();
+            return dal.UpdateLightSwitch(this);
         }
 
         public void DeleteInDb()
         {
-            iDataAccessLayer dal = new InMemoryDAL();
+            iDataAccessLayer dal = new JsonDAL();
             dal.DeleteLightSwitchById(this);
         }
     }

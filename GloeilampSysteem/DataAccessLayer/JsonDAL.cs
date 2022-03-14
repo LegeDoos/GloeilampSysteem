@@ -11,12 +11,12 @@ namespace GloeilampSysteem.DataAccessLayer
     /// <summary>
     /// Dit zou in een betere vorm een singleton worden (singleton pattern) om te voorkomen dat er telkens een nieuwe instance wordt gemaakt!
     /// </summary>
-    public class InMemoryDAL : iDataAccessLayer
+    public class JsonDAL : iDataAccessLayer
     {
         List<LightSwitch> lightSwitches = new List<LightSwitch>();
         string lightSwitchesFileName = "lightswitches.json";
 
-        public InMemoryDAL()
+        public JsonDAL()
         {
             this.GetFromFile();
             if (lightSwitches.Count == 0)
@@ -98,14 +98,16 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public Lamp UpdateLamp(Lamp lamp)
         {
-            // by object reference the lamps is already updated in this case
-            this.SaveToFile();
-            return lamp;
+            throw new NotImplementedException("Not implemented");
         }
 
         public LightSwitch UpdateLightSwitch(LightSwitch lightSwitch)
         {
-            // by object reference the lightswitch is already updated in this case
+            // replace the lightswitch
+            var toDelete = lightSwitches.Find(x => x.Id == lightSwitch.Id);
+            lightSwitches.Remove(toDelete);
+            lightSwitches.Add(lightSwitch);
+
             this.SaveToFile();
             return lightSwitch;
         }
