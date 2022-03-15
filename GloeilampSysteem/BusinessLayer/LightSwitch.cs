@@ -52,32 +52,32 @@ namespace GloeilampSysteem.BusinessLayer
         {
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
-            iDataAccessLayer dal = new JsonDAL(); // Todo singleton pattern toepassen
+            iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
             var result = dal.CreateLightSwitch(this);
             this.Id = result.Id;
         }
 
         public static List<LightSwitch> GetLightSwitchesFromDb()
         {
-            iDataAccessLayer dal = new JsonDAL(); // Todo singleton pattern toepassen
+            iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
             return dal.GetLightswitches();
         }
 
         public static LightSwitch GetLightswitchByIdFromDb(int id)
         {
-            iDataAccessLayer dal = new JsonDAL();
+            iDataAccessLayer dal = DAL.Instance;
             return dal.GetLightSwitchById(id);
         }
 
         public LightSwitch UpdateInDb()
         {
-            iDataAccessLayer dal = new JsonDAL();
+            iDataAccessLayer dal = DAL.Instance;
             return dal.UpdateLightSwitch(this);
         }
 
         public void DeleteInDb()
         {
-            iDataAccessLayer dal = new JsonDAL();
+            iDataAccessLayer dal = DAL.Instance;
             dal.DeleteLightSwitchById(this);
         }
     }

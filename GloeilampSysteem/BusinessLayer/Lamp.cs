@@ -48,13 +48,13 @@ namespace GloeilampSysteem.BusinessLayer
         // Data access:
         public static Lamp GetLightswitchByIdFromDb(int id)
         {
-            iDataAccessLayer dal = new JsonDAL();
+            iDataAccessLayer dal = DAL.Instance;
             return dal.GetLampById(id);
         }
 
         public void DeleteInDb()
         {
-            iDataAccessLayer dal = new JsonDAL();
+            iDataAccessLayer dal = DAL.Instance;
             dal.DeleteLampById(this);
         }
     }
