@@ -43,6 +43,8 @@ namespace GloeilampSysteem.DataAccessLayer
                     }
                 }
             }
+
+            
             return lightSwitches;
         }
 
@@ -71,33 +73,11 @@ namespace GloeilampSysteem.DataAccessLayer
             return lightSwitch;
         }
 
-
-        /*  public LightSwitch CreateLightSwitch(LightSwitch lightSwitch)
-          {
-              using (SqlConnection connection = new SqlConnection(connectionString))
-              {
-                  string sql = "insert into LightSwitch (Name, IsOn) values (@name, @ison)";
-                  connection.Open();
-
-                  using (SqlCommand command = new SqlCommand(sql, connection))
-                  {
-                      command.Parameters.AddWithValue("@name", lightSwitch.Name);
-                      int isOn = 0;
-                      if (lightSwitch.IsOn)
-                      {
-                          isOn = 1;
-                      }
-                      command.Parameters.AddWithValue("@ison", isOn);
-                      command.ExecuteNonQuery();
-                  }
-              }
-              return lightSwitch;
-          }
-        */
-
         public void DeleteLampById(Lamp lamp)
         {
+
             throw new NotImplementedException();
+
         }
 
         public void DeleteLightSwitchById(LightSwitch lightSwitch)
