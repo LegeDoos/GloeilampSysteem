@@ -42,9 +42,26 @@ namespace GloeilampSysteem.DataAccessLayer
                         }
                     }
                 }
-            }
 
-            
+                foreach (var lightSwitch in lightSwitches)
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "select id, name from Lamp where lightswitchid = @lsid";
+                        command.Parameters.AddWithValue("lsid", lightSwitch.Id);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var lamp = new Lamp(Int32.Parse(reader[0].ToString()), reader[1].ToString());
+                                lightSwitch.ConnectLamp(lamp);
+                            }
+                        }
+                    }
+
+                }
+            }            
             return lightSwitches;
         }
 
@@ -69,14 +86,45 @@ namespace GloeilampSysteem.DataAccessLayer
                     }
                     command.ExecuteNonQuery();
                 }
+                //todo get lightswitch id!
+
+                foreach (var lamp in lightSwitch.Lamps)
+                {
+                    sql = "INSERT INTO Lamp(Name, IsOn, LightSwitchId) VALUES (@name, @ison, @lightswitchid)";
+                    
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@name", lamp.Name);
+                        if (lightSwitch.IsOn)
+                        {
+                            command.Parameters.AddWithValue("@ison", 1);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@ison", 0);
+                        }
+                        command.Parameters.AddWithValue("@lightswitchid", lightSwitch.Id);
+                        command.ExecuteNonQuery();
+                    }
+                }
             }
             return lightSwitch;
         }
 
         public void DeleteLampById(Lamp lamp)
         {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = "DELETE FROM LAMP WHERE ID = @lampid";
+                connection.Open();
 
-            throw new NotImplementedException();
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@name", lamp.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
 
         }
 
