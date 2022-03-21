@@ -78,7 +78,7 @@ namespace GloeilampSysteem.BusinessLayer
         public void DeleteInDb()
         {
             iDataAccessLayer dal = DAL.Instance;
-            dal.DeleteLightSwitchById(this);
+            dal.DeleteLightSwitch(this);
         }
     }
 }

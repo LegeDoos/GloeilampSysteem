@@ -128,7 +128,7 @@ namespace GloeilampSysteem.DataAccessLayer
 
         }
 
-        public void DeleteLightSwitchById(LightSwitch lightSwitch)
+        public void DeleteLightSwitch(LightSwitch lightSwitch)
         {
             throw new NotImplementedException();
         }
@@ -152,7 +152,6 @@ namespace GloeilampSysteem.DataAccessLayer
         {
             throw new NotImplementedException();
         }
-
 
     }
 }

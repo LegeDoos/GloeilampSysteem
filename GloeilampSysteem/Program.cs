@@ -4,14 +4,11 @@ using GloeilampSysteem.BusinessLayer;
 
 Console.WriteLine("Lamp and Lightswitch example");
 
-
-// Create lightswitch
+//Create lightswitch
 //LightSwitch lswitch = new LightSwitch(10, "Test A1D1 20220321");
 //lswitch.ConnectLamp(new Lamp(1, "Lamp 1"));
 //lswitch.ConnectLamp(new Lamp(2, "Lamp 2"));
 //lswitch.CreateInDb();
-
-// Create lamps
 
 
 // Show data
@@ -24,6 +21,8 @@ foreach (var s in LightSwitch.GetLightSwitchesFromDb())
         Console.WriteLine($"  Lamp {lamp.Name} is aan: {lamp.IsOn}");
     }
 }
+
+// Delete lightswitch 14
 
 
 
