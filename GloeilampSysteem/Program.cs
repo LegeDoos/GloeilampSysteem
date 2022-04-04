@@ -5,8 +5,9 @@ using GloeilampSysteem.BusinessLayer;
 Console.WriteLine("Lamp and Lightswitch example");
 
 
-// Create lightswitch
+// Create lightswitch (
 LightSwitch lswitch = new LightSwitch(10, "Test A1D1");
+lswitch.DeleteInDb();
 lswitch.CreateInDb();
 
 // Show data

@@ -20,6 +20,10 @@ namespace GloeilampSysteem.BusinessLayer
         [System.Text.Json.Serialization.JsonIgnore] // json serializer loop error voorkomen
         public LightSwitch? LightSwitch { get; set; }
 
+        public Lamp()
+        {
+
+        }
         
         public Lamp(int id, string name)
         {

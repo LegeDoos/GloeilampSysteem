@@ -16,6 +16,10 @@ namespace GloeilampSysteem.BusinessLayer
         public bool IsOn { get; set; }
 
         public List<Lamp> Lamps { get; set; }
+        public LightSwitch()
+        {
+
+        }
         
         public LightSwitch(int id, string name)
         {
