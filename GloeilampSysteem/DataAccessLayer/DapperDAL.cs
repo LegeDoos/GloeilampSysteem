@@ -76,7 +76,7 @@ namespace GloeilampSysteem.DataAccessLayer
                 return lightSwitch; 
             }  
         }
-        public void DeleteLightSwitchById(LightSwitch lightSwitch)
+        public void DeleteLightSwitch(LightSwitch lightSwitch)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {                                               
@@ -107,5 +107,7 @@ namespace GloeilampSysteem.DataAccessLayer
                 return lamps;
             }
         }
+
+        
     }
 }
