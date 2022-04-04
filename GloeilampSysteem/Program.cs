@@ -15,15 +15,30 @@ Console.WriteLine("Lamp and Lightswitch example");
 foreach (var s in LightSwitch.GetLightSwitchesFromDb())
 {
     Console.WriteLine("-----------");
-    Console.WriteLine($"Switch {s.Name}");
+    Console.WriteLine($"Switch {s.Name} (id: {s.Id})");
     foreach (var lamp in s.Lamps)
     {
         Console.WriteLine($"  Lamp {lamp.Name} is aan: {lamp.IsOn}");
     }
 }
 
-// Delete lightswitch 14
+// Delete lightswitch 
+Console.WriteLine("Geef id voor de te verwijderen switch:");
+var value = Int32.Parse(Console.ReadLine());
+var lightSwitchToDelete = LightSwitch.GetLightswitchById(value);
+lightSwitchToDelete.DeleteInDb();
 
+// show data
+Console.Clear();
+foreach (var s in LightSwitch.GetLightSwitchesFromDb())
+{
+    Console.WriteLine("-----------");
+    Console.WriteLine($"Switch {s.Name} (id: {s.Id})");
+    foreach (var lamp in s.Lamps)
+    {
+        Console.WriteLine($"  Lamp {lamp.Name} is aan: {lamp.IsOn}");
+    }
+}
 
 
 /*

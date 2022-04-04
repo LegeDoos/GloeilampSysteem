@@ -65,7 +65,6 @@ namespace GloeilampSysteem.DataAccessLayer
             return lightSwitches;
         }
 
-
         public LightSwitch CreateLightSwitch(LightSwitch lightSwitch)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -138,9 +137,29 @@ namespace GloeilampSysteem.DataAccessLayer
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Haal de lightswitch uit de lijst op basis van het id
+        /// </summary>
+        /// <param name="id">Het id van de lightswitch</param>
+        /// <returns>De gevonden lightswitch</returns>
         public LightSwitch GetLightSwitchById(int id)
         {
-            throw new NotImplementedException();
+            //foreach (var lightSwitch in lightSwitches)
+            //{
+            //    if (lightSwitch.Id == id)
+            //        return lightSwitch;
+            //}
+
+            //LightSwitch result = lightSwitches.Find(ls => ls.Id == id);
+            //return result;
+
+
+            LightSwitch toDelete = lightSwitches.Find(ls => ls.Id == id);
+            lightSwitches.Remove(toDelete);
+
+
+            return lightSwitches.Find(ls => ls.Id == id);
+
         }
 
         public Lamp UpdateLamp(Lamp lamp)

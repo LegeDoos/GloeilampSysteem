@@ -50,6 +50,8 @@ namespace GloeilampSysteem.BusinessLayer
         // Data access:
         public void CreateInDb()
         {
+            // controles
+            
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
             iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
@@ -63,7 +65,7 @@ namespace GloeilampSysteem.BusinessLayer
             return dal.GetLightswitches();
         }
 
-        public static LightSwitch GetLightswitchByIdFromDb(int id)
+        public static LightSwitch GetLightswitchById(int id)
         {
             iDataAccessLayer dal = DAL.Instance;
             return dal.GetLightSwitchById(id);
