@@ -20,7 +20,7 @@ namespace GloeilampSysteem.DataAccessLayer
         public LightSwitch CreateLightSwitch(LightSwitch lightSwitch);
         public LightSwitch GetLightSwitchById(int id);
         public LightSwitch UpdateLightSwitch(LightSwitch lightSwitch);
-        public void DeleteLightSwitchById(LightSwitch lightSwitch);
+        public void DeleteLightSwitch(LightSwitch lightSwitch);
 
         public List<LightSwitch> GetLightswitches();
 

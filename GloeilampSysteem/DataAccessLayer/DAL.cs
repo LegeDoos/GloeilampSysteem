@@ -9,7 +9,7 @@ namespace GloeilampSysteem.DataAccessLayer
     public sealed class DAL
     {
         private static iDataAccessLayer instance = null;
-        private static readonly object padlick = new object();
+        private static readonly object padlock = new object();
 
         public DAL()
         {
@@ -19,12 +19,12 @@ namespace GloeilampSysteem.DataAccessLayer
         {
             get
             {
-                lock(padlick)
+                lock(padlock)
                 {
                     if (instance == null)
                     {
-                        instance = new JsonDAL();
-                        //instance = new DapperDAL();
+                        //instance = new JsonDAL();
+                        instance = new DapperDAL();
                     }
                     return instance;
                 }

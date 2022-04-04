@@ -75,7 +75,7 @@ namespace GloeilampSysteem.DataAccessLayer
             this.SaveToFile();
         }
 
-        public void DeleteLightSwitchById(LightSwitch lightSwitch)
+        public void DeleteLightSwitch(LightSwitch lightSwitch)
         {
             lightSwitches.Remove(lightSwitch);
             this.SaveToFile();
@@ -111,5 +111,6 @@ namespace GloeilampSysteem.DataAccessLayer
             this.SaveToFile();
             return lightSwitch;
         }
+
     }
 }
