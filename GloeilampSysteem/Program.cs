@@ -10,6 +10,10 @@ Console.WriteLine("Lamp and Lightswitch example");
 //lswitch.ConnectLamp(new Lamp(2, "Lamp 2"));
 //lswitch.CreateInDb();
 
+// Create lightswitch (
+LightSwitch lswitch = new LightSwitch(10, "Test A1D1");
+lswitch.DeleteInDb();
+lswitch.CreateInDb();
 
 // Show data
 foreach (var s in LightSwitch.GetLightSwitchesFromDb())

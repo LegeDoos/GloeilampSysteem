@@ -23,7 +23,8 @@ namespace GloeilampSysteem.DataAccessLayer
                 {
                     if (instance == null)
                     {
-                        instance = new SQLDAL();
+                        //instance = new JsonDAL();
+                        instance = new DapperDAL();
                     }
                     return instance;
                 }
