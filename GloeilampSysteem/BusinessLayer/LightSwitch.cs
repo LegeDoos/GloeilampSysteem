@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GloeilampSysteem.BusinessLayer
 {
+    /// <summary>
+    /// Represents a lightswitch
+    /// </summary>
     public class LightSwitch
     {
         public int Id { get; private set; }
@@ -16,11 +19,12 @@ namespace GloeilampSysteem.BusinessLayer
         public bool IsOn { get; set; }
 
         public List<Lamp> Lamps { get; set; }
-        public LightSwitch()
-        {
 
-        }
-        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">The unique identifier of a lightswitch</param>
+        /// <param name="name">The name of the lightswitch</param>
         public LightSwitch(int id, string name)
         {
             Lamps = new List<Lamp>();
@@ -29,12 +33,19 @@ namespace GloeilampSysteem.BusinessLayer
             IsOn = false;
         }
 
+        /// <summary>
+        /// Connect the lamp to the lightswitch and create relation in both directions
+        /// </summary>
+        /// <param name="theLamp">The lamp to connect to the lightswitch</param>
         public void ConnectLamp(Lamp theLamp)
         {
             Lamps.Add(theLamp);
             theLamp.ConnectLightswitch(this);
         }
 
+        /// <summary>
+        /// Toggle the lightswitch
+        /// </summary>
         public void Toggle()
         {
             // zet de lampen aan
@@ -52,36 +63,56 @@ namespace GloeilampSysteem.BusinessLayer
         }
 
         // Data access:
-        public void CreateInDb()
+        
+        /// <summary>
+        /// Persist this lightswitch in datalayer
+        /// </summary>
+        public void Create()
         {
-            // controles
+            // controles zouden hier plaats moeten vinden
             
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
-            iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
+            iDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
             var result = dal.CreateLightSwitch(this);
             this.Id = result.Id;
         }
 
-        public static List<LightSwitch> GetLightSwitchesFromDb()
+        /// <summary>
+        /// Get all lightswitches from datalayer
+        /// </summary>
+        /// <returns>A list with all lightswitches</returns>
+        public static List<LightSwitch> Read()
         {
             iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
             return dal.GetLightswitches();
         }
 
-        public static LightSwitch GetLightswitchById(int id)
+        /// <summary>
+        /// Get specific lightswitch from database
+        /// </summary>
+        /// <param name="id">The id of the specific lightswitch</param>
+        /// <returns>The specific lightswitch</returns>
+        public static LightSwitch Read(int id)
         {
             iDataAccessLayer dal = DAL.Instance;
             return dal.GetLightSwitchById(id);
         }
 
-        public LightSwitch UpdateInDb()
+        /// <summary>
+        /// Persist the changes on the lightswitch in the datalayer (update)
+        /// </summary>
+        /// <returns>The updated lightswitch</returns>
+        public LightSwitch Update()
         {
             iDataAccessLayer dal = DAL.Instance;
             return dal.UpdateLightSwitch(this);
         }
 
-        public void DeleteInDb()
+        /// <summary>
+        /// Delete this lightswitch from the datalayer
+        /// </summary>
+        public void Delete()
         {
             iDataAccessLayer dal = DAL.Instance;
             dal.DeleteLightSwitch(this);

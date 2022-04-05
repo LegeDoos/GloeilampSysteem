@@ -12,11 +12,11 @@ Console.WriteLine("Lamp and Lightswitch example");
 
 // Create lightswitch (
 LightSwitch lswitch = new LightSwitch(10, "Test A1D1");
-lswitch.DeleteInDb();
-lswitch.CreateInDb();
+lswitch.Delete();
+lswitch.Create();
 
 // Show data
-foreach (var s in LightSwitch.GetLightSwitchesFromDb())
+foreach (var s in LightSwitch.Read())
 {
     Console.WriteLine("-----------");
     Console.WriteLine($"Switch {s.Name} (id: {s.Id})");
@@ -29,12 +29,12 @@ foreach (var s in LightSwitch.GetLightSwitchesFromDb())
 // Delete lightswitch 
 Console.WriteLine("Geef id voor de te verwijderen switch:");
 var value = Int32.Parse(Console.ReadLine());
-var lightSwitchToDelete = LightSwitch.GetLightswitchById(value);
-lightSwitchToDelete.DeleteInDb();
+var lightSwitchToDelete = LightSwitch.Read(value);
+lightSwitchToDelete.Delete();
 
 // show data
 Console.Clear();
-foreach (var s in LightSwitch.GetLightSwitchesFromDb())
+foreach (var s in LightSwitch.Read())
 {
     Console.WriteLine("-----------");
     Console.WriteLine($"Switch {s.Name} (id: {s.Id})");
