@@ -130,13 +130,30 @@ namespace GloeilampSysteem.DataAccessLayer
                     command.ExecuteNonQuery();
                 }
             }
-
-
         }
 
         public void DeleteLightswitch(Lightswitch lightSwitch)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // first delete lamps
+                string sql = "DELETE FROM LAMP WHERE lightswitchid = @lichtswitchid";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@lichtswitchid", lightSwitch.Id);
+                    command.ExecuteNonQuery();
+                }
+
+                // finally delete switch
+                sql = "DELETE FROM lightswitch WHERE ID = @lightswitchid";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@lightswitchid", lightSwitch.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public Lamp ReadLamp(int id)

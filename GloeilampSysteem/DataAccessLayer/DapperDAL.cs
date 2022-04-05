@@ -64,7 +64,7 @@ namespace GloeilampSysteem.DataAccessLayer
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {               
                 var output = connection.QueryFirst<Lightswitch>("dbo.GetLightSwitchById @id", new {id = id});
-                //Todo: Create lamps
+                //Todo: create lamps
                 return output;
             }    
         }
@@ -81,7 +81,8 @@ namespace GloeilampSysteem.DataAccessLayer
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {                                               
-                connection.Execute("dbo.DeleteLightSwitch @Id", new { Id = lightSwitch.Id} );                
+                connection.Execute("dbo.DeleteLightSwitch @Id", new { Id = lightSwitch.Id} ); 
+                //Todo: delete lamps!
             }  
         }
 
