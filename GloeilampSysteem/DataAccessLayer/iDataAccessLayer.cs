@@ -14,16 +14,16 @@ namespace GloeilampSysteem.DataAccessLayer
         // interface geeft aan wat je in de DAL verwacht
 
         public Lamp CreateLamp(Lamp lamp);
-        public Lamp GetLampById(int id);
+        public Lamp ReadLamp(int id);
         public Lamp UpdateLamp(Lamp lamp);
-        public void DeleteLampById(Lamp lamp);
+        public void DeleteLamp(Lamp lamp);
 
-        public LightSwitch CreateLightSwitch(LightSwitch lightSwitch);
-        public LightSwitch GetLightSwitchById(int id);
-        public LightSwitch UpdateLightSwitch(LightSwitch lightSwitch);
-        public void DeleteLightSwitch(LightSwitch lightSwitch);
+        public Lightswitch CreateLightswitch(Lightswitch lightSwitch);
+        public Lightswitch ReadLightswitch(int id);
+        public Lightswitch UpdateLightswitch(Lightswitch lightSwitch);
+        public void DeleteLightswitch(Lightswitch lightSwitch);
 
-        public List<LightSwitch> GetLightswitches();
+        public List<Lightswitch> ReadLightswitches();
 
     }
 }

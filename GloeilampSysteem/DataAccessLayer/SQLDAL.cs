@@ -11,13 +11,13 @@ namespace GloeilampSysteem.DataAccessLayer
     public class SQLDAL : iDataAccessLayer
     {
         string connectionString = "Data Source=.;Initial Catalog=GloeilampSysteem;Integrated Security=True";
-        List<LightSwitch> lightSwitches = new List<LightSwitch>();
+        List<Lightswitch> lightSwitches = new List<Lightswitch>();
 
         public SQLDAL()
         {
         }
 
-        public List<LightSwitch> GetLightswitches()
+        public List<Lightswitch> ReadLightswitches()
         {
             lightSwitches.Clear();            
 
@@ -34,7 +34,7 @@ namespace GloeilampSysteem.DataAccessLayer
                     {
                         while (reader.Read())
                         {
-                            var lightSwitch = new LightSwitch(Int32.Parse(reader[0].ToString()),
+                            var lightSwitch = new Lightswitch(Int32.Parse(reader[0].ToString()),
                                 reader[1].ToString());
                             lightSwitch.IsOn = Int32.Parse(reader[0].ToString()) == 1 ? true : false;
                             lightSwitches.Add(lightSwitch);
@@ -64,7 +64,7 @@ namespace GloeilampSysteem.DataAccessLayer
             return lightSwitches;
         }
 
-        public LightSwitch CreateLightSwitch(LightSwitch lightSwitch)
+        public Lightswitch CreateLightswitch(Lightswitch lightSwitch)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -109,7 +109,7 @@ namespace GloeilampSysteem.DataAccessLayer
             return lightSwitch;
         }
 
-        public void DeleteLampById(Lamp lamp)
+        public void DeleteLamp(Lamp lamp)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -126,12 +126,12 @@ namespace GloeilampSysteem.DataAccessLayer
 
         }
 
-        public void DeleteLightSwitch(LightSwitch lightSwitch)
+        public void DeleteLightswitch(Lightswitch lightSwitch)
         {
             throw new NotImplementedException();
         }
 
-        public Lamp GetLampById(int id)
+        public Lamp ReadLamp(int id)
         {
             throw new NotImplementedException();
         }
@@ -141,7 +141,7 @@ namespace GloeilampSysteem.DataAccessLayer
         /// </summary>
         /// <param name="id">Het id van de lightswitch</param>
         /// <returns>De gevonden lightswitch</returns>
-        public LightSwitch GetLightSwitchById(int id)
+        public Lightswitch ReadLightswitch(int id)
         {
             //foreach (var lightSwitch in lightSwitches)
             //{
@@ -153,7 +153,7 @@ namespace GloeilampSysteem.DataAccessLayer
             //return result;
 
 
-            LightSwitch toDelete = lightSwitches.Find(ls => ls.Id == id);
+            Lightswitch toDelete = lightSwitches.Find(ls => ls.Id == id);
             lightSwitches.Remove(toDelete);
 
 
@@ -166,7 +166,7 @@ namespace GloeilampSysteem.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public LightSwitch UpdateLightSwitch(LightSwitch lightSwitch)
+        public Lightswitch UpdateLightswitch(Lightswitch lightSwitch)
         {
             throw new NotImplementedException();
         }

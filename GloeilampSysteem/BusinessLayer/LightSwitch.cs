@@ -10,7 +10,7 @@ namespace GloeilampSysteem.BusinessLayer
     /// <summary>
     /// Represents a lightswitch
     /// </summary>
-    public class LightSwitch
+    public class Lightswitch
     {
         public int Id { get; private set; }
 
@@ -25,7 +25,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// </summary>
         /// <param name="id">The unique identifier of a lightswitch</param>
         /// <param name="name">The name of the lightswitch</param>
-        public LightSwitch(int id, string name)
+        public Lightswitch(int id, string name)
         {
             Lamps = new List<Lamp>();
             this.Id = id;
@@ -74,7 +74,7 @@ namespace GloeilampSysteem.BusinessLayer
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
             iDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
-            var result = dal.CreateLightSwitch(this);
+            var result = dal.CreateLightswitch(this);
             this.Id = result.Id;
         }
 
@@ -82,10 +82,10 @@ namespace GloeilampSysteem.BusinessLayer
         /// Get all lightswitches from datalayer
         /// </summary>
         /// <returns>A list with all lightswitches</returns>
-        public static List<LightSwitch> Read()
+        public static List<Lightswitch> Read()
         {
             iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
-            return dal.GetLightswitches();
+            return dal.ReadLightswitches();
         }
 
         /// <summary>
@@ -93,20 +93,20 @@ namespace GloeilampSysteem.BusinessLayer
         /// </summary>
         /// <param name="id">The id of the specific lightswitch</param>
         /// <returns>The specific lightswitch</returns>
-        public static LightSwitch Read(int id)
+        public static Lightswitch Read(int id)
         {
             iDataAccessLayer dal = DAL.Instance;
-            return dal.GetLightSwitchById(id);
+            return dal.ReadLightswitch(id);
         }
 
         /// <summary>
         /// Persist the changes on the lightswitch in the datalayer (update)
         /// </summary>
         /// <returns>The updated lightswitch</returns>
-        public LightSwitch Update()
+        public Lightswitch Update()
         {
             iDataAccessLayer dal = DAL.Instance;
-            return dal.UpdateLightSwitch(this);
+            return dal.UpdateLightswitch(this);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace GloeilampSysteem.BusinessLayer
         public void Delete()
         {
             iDataAccessLayer dal = DAL.Instance;
-            dal.DeleteLightSwitch(this);
+            dal.DeleteLightswitch(this);
         }
     }
 }

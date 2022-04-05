@@ -13,14 +13,14 @@ namespace GloeilampSysteem.DataAccessLayer
     {
         string connectionString = "Server=LB1908062\\MSSQLSERVER2019;Database=RobsHouseLightning;User Id=Party;Password=Feest123;";
         //string connectionString = "Data Source =.; Initial Catalog = GloeilampSysteem; Integrated Security = True";
-        List<LightSwitch> lightSwitches = new List<LightSwitch>();
+        List<Lightswitch> lightSwitches = new List<Lightswitch>();
 
         public DapperDAL()
         {
                 
         }
 
-        public Lamp GetLampById(int id)
+        public Lamp ReadLamp(int id)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {               
@@ -40,7 +40,7 @@ namespace GloeilampSysteem.DataAccessLayer
                 return lamp; // waarom??
             }         
         }
-        public void DeleteLampById(Lamp lamp)
+        public void DeleteLamp(Lamp lamp)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {                                               
@@ -48,27 +48,27 @@ namespace GloeilampSysteem.DataAccessLayer
             }  
         }
 
-        public LightSwitch CreateLightSwitch(LightSwitch lightSwitch)
+        public Lightswitch CreateLightswitch(Lightswitch lightSwitch)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {               
-                List<LightSwitch> newLightSwitch = new List<LightSwitch>();
-                newLightSwitch.Add(new LightSwitch(lightSwitch.Id, lightSwitch.Name));
+                List<Lightswitch> newLightSwitch = new List<Lightswitch>();
+                newLightSwitch.Add(new Lightswitch(lightSwitch.Id, lightSwitch.Name));
                 connection.Execute("dbo.InsertLightSwitch @Id, @Name, @ison", newLightSwitch);
                 return lightSwitch;
             }                        
         }
         
-        public LightSwitch GetLightSwitchById(int id) 
+        public Lightswitch ReadLightswitch(int id) 
         { 
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {               
-                var output = connection.QueryFirst<LightSwitch>("dbo.GetLightSwitchById @id", new {id = id});
+                var output = connection.QueryFirst<Lightswitch>("dbo.GetLightSwitchById @id", new {id = id});
                 return output;
             }    
         }
 
-        public LightSwitch UpdateLightSwitch(LightSwitch lightSwitch)
+        public Lightswitch UpdateLightswitch(Lightswitch lightSwitch)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {                                               
@@ -76,7 +76,7 @@ namespace GloeilampSysteem.DataAccessLayer
                 return lightSwitch; 
             }  
         }
-        public void DeleteLightSwitch(LightSwitch lightSwitch)
+        public void DeleteLightswitch(Lightswitch lightSwitch)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {                                               
@@ -84,13 +84,13 @@ namespace GloeilampSysteem.DataAccessLayer
             }  
         }
 
-        public List<LightSwitch> GetLightswitches()
+        public List<Lightswitch> ReadLightswitches()
         {
             lightSwitches.Clear();
 
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {            
-                var lightSwitches = connection.Query<LightSwitch>("dbo.GetAllLightSwitches").ToList();
+                var lightSwitches = connection.Query<Lightswitch>("dbo.GetAllLightSwitches").ToList();
                 foreach (var LS in lightSwitches)
                 {
                     LS.Lamps = ConnectLampsToLightswitches(LS);
@@ -99,7 +99,7 @@ namespace GloeilampSysteem.DataAccessLayer
             }
         }
 
-        public List<Lamp> ConnectLampsToLightswitches(LightSwitch lightSwitch)
+        public List<Lamp> ConnectLampsToLightswitches(Lightswitch lightSwitch)
         {            
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {                

@@ -13,7 +13,7 @@ namespace GloeilampSysteem.DataAccessLayer
     /// </summary>
     public class JsonDAL : iDataAccessLayer
     {
-        List<LightSwitch> lightSwitches = new List<LightSwitch>();
+        List<Lightswitch> lightSwitches = new List<Lightswitch>();
         string lightSwitchesFileName = "lightswitches.json";
 
         public JsonDAL()
@@ -30,7 +30,7 @@ namespace GloeilampSysteem.DataAccessLayer
         {
             try
             {
-                lightSwitches = JsonSerializer.Deserialize<List<LightSwitch>>(File.ReadAllText(lightSwitchesFileName));
+                lightSwitches = JsonSerializer.Deserialize<List<Lightswitch>>(File.ReadAllText(lightSwitchesFileName));
             }
             catch (Exception)
             {
@@ -45,14 +45,14 @@ namespace GloeilampSysteem.DataAccessLayer
         }
         private void CreateDummyData()
         {
-            LightSwitch lightswitch = new LightSwitch(1, "Lightswitch 1");
+            Lightswitch lightswitch = new Lightswitch(1, "Lightswitch 1");
             lightswitch.ConnectLamp(new Lamp(1, "Lamp 1"));
             lightswitch.ConnectLamp(new Lamp(2, "Lamp 2"));
             lightswitch.ConnectLamp(new Lamp(3, "Lamp 3"));
             lightswitch.ConnectLamp(new Lamp(4, "Lamp 4"));
             lightSwitches.Add(lightswitch);
 
-            LightSwitch lightswitch2 = new LightSwitch(2, "Lightswitch 2");
+            Lightswitch lightswitch2 = new Lightswitch(2, "Lightswitch 2");
             lightswitch2.ConnectLamp(new Lamp(5, "Lamp 5"));
             lightswitch2.ConnectLamp(new Lamp(6, "Lamp 6"));
             lightSwitches.Add(lightswitch2);
@@ -61,37 +61,37 @@ namespace GloeilampSysteem.DataAccessLayer
         }
 
 
-        public LightSwitch CreateLightSwitch(LightSwitch lightSwitch)
+        public Lightswitch CreateLightswitch(Lightswitch lightSwitch)
         {
             lightSwitches.Add(lightSwitch);
             this.SaveToFile();
             return lightSwitch;
         }
 
-        public void DeleteLampById(Lamp lamp)
+        public void DeleteLamp(Lamp lamp)
         {
             // get the lightswitch
             lamp.LightSwitch.Lamps.Remove(lamp);
             this.SaveToFile();
         }
 
-        public void DeleteLightSwitch(LightSwitch lightSwitch)
+        public void DeleteLightswitch(Lightswitch lightSwitch)
         {
             lightSwitches.Remove(lightSwitch);
             this.SaveToFile();
         }
 
-        public Lamp GetLampById(int id)
+        public Lamp ReadLamp(int id)
         {
             throw new NotImplementedException("Not implemented");
         }
 
-        public LightSwitch GetLightSwitchById(int id)
+        public Lightswitch ReadLightswitch(int id)
         {
             return lightSwitches.Find(x => x.Id == id);
         }
 
-        public List<LightSwitch> GetLightswitches()
+        public List<Lightswitch> ReadLightswitches()
         {
             return lightSwitches; 
         }
@@ -101,7 +101,7 @@ namespace GloeilampSysteem.DataAccessLayer
             throw new NotImplementedException("Not implemented");
         }
 
-        public LightSwitch UpdateLightSwitch(LightSwitch lightSwitch)
+        public Lightswitch UpdateLightswitch(Lightswitch lightSwitch)
         {
             // replace the lightswitch
             var toDelete = lightSwitches.Find(x => x.Id == lightSwitch.Id);

@@ -21,7 +21,7 @@ namespace GloeilampSysteem.BusinessLayer
         public string State { get; set; }
 
         [System.Text.Json.Serialization.JsonIgnore] // json serializer loop error voorkomen
-        public LightSwitch? LightSwitch { get; set; }
+        public Lightswitch? LightSwitch { get; set; }
 
         /// <summary>
         /// Constructor
@@ -56,7 +56,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// Connect the lightswitch to this lamp
         /// </summary>
         /// <param name="theSwitch">The lightswitch to connect to</param>
-        public void ConnectLightswitch(LightSwitch theSwitch)
+        public void ConnectLightswitch(Lightswitch theSwitch)
         {
             this.LightSwitch = theSwitch;
         }
@@ -85,7 +85,7 @@ namespace GloeilampSysteem.BusinessLayer
         public static Lamp Read(int id)
         {
             iDataAccessLayer dal = DAL.Instance;
-            return dal.GetLampById(id);
+            return dal.ReadLamp(id);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace GloeilampSysteem.BusinessLayer
         public void Delete()
         {
             iDataAccessLayer dal = DAL.Instance;
-            dal.DeleteLampById(this);
+            dal.DeleteLamp(this);
         }
     }
 }
