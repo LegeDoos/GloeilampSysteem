@@ -36,7 +36,7 @@ namespace GloeilampSysteem.DataAccessLayer
                         {
                             var lightSwitch = new Lightswitch(Int32.Parse(reader[0].ToString()),
                                 reader[1].ToString());
-                            lightSwitch.IsOn = Int32.Parse(reader[0].ToString()) == 1 ? true : false;
+                            lightSwitch.IsOn = Int32.Parse(reader[2].ToString()) == 1 ? true : false;
                             lightSwitches.Add(lightSwitch);
                         }
                     }
@@ -47,13 +47,15 @@ namespace GloeilampSysteem.DataAccessLayer
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = "select id, name from Lamp where lightswitchid = @lsid";
+                        command.CommandText = "select id, name, state, ison from Lamp where lightswitchid = @lsid";
                         command.Parameters.AddWithValue("lsid", lightSwitch.Id);
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
                                 var lamp = new Lamp(Int32.Parse(reader[0].ToString()), reader[1].ToString());
+                                lamp.State = reader[2].ToString();
+                                lamp.IsOn = Int32.Parse(reader[3].ToString()) == 1 ? true : false;
                                 lightSwitch.ConnectLamp(lamp);
                             }
                         }
@@ -168,32 +170,50 @@ namespace GloeilampSysteem.DataAccessLayer
         /// <returns>De gevonden lightswitch</returns>
         public Lightswitch ReadLightswitch(int id)
         {
-            //foreach (var lightSwitch in lightSwitches)
-            //{
-            //    if (lightSwitch.Id == id)
-            //        return lightSwitch;
-            //}
-
-            //LightSwitch result = lightSwitches.Find(ls => ls.Id == id);
-            //return result;
-
-
             Lightswitch toDelete = lightSwitches.Find(ls => ls.Id == id);
             lightSwitches.Remove(toDelete);
 
-
             return lightSwitches.Find(ls => ls.Id == id);
-
         }
 
         public Lamp UpdateLamp(Lamp lamp)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = $"update lamp set [Name] = @name, IsOn = @ison, State = @state, Lightswitchid = @lightswitchid where id = @id;";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@name", lamp.Name);
+                    command.Parameters.AddWithValue("@ison", lamp.IsOn ? 1 : 0);
+                    command.Parameters.AddWithValue("@state", lamp.State);
+                    command.Parameters.AddWithValue("@lightswitchid", lamp.LightSwitch.Id);
+                    command.Parameters.AddWithValue("@id", lamp.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
+            return lamp;
         }
 
         public Lightswitch UpdateLightswitch(Lightswitch lightSwitch)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sql = $"update LightSwitch set [Name] = @name, IsOn = @ison where id = @id;";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@name", lightSwitch.Name);
+                    command.Parameters.AddWithValue("@ison", lightSwitch.IsOn ? 1 : 0);
+                    command.Parameters.AddWithValue("@id", lightSwitch.Id);
+                    command.ExecuteNonQuery();
+                }
+                foreach (var lamp in lightSwitch.Lamps)
+                {
+                    this.UpdateLamp(lamp);
+                }
+            }
+            return lightSwitch;
         }
 
         public Lamp CreateLamp(Lamp lamp)

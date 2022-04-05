@@ -57,6 +57,7 @@ namespace GloeilampSysteem.DataAccessLayer
                 connection.Execute("dbo.InsertLightSwitch @Id, @Name, @ison", newLightSwitch);
                 return lightSwitch;
             }                        
+            //todo: create lamps from lightswitch
         }
         
         public Lightswitch ReadLightswitch(int id) 
@@ -76,6 +77,7 @@ namespace GloeilampSysteem.DataAccessLayer
                 connection.Execute("dbo.UpdateLightSwitch @Id, @Ison", new { Id = lightSwitch.Id, IsOn = lightSwitch.IsOn});                
                 return lightSwitch; 
             }  
+            //todo: update lamps
         }
         public void DeleteLightswitch(Lightswitch lightSwitch)
         {

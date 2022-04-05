@@ -79,6 +79,7 @@ namespace GloeilampSysteem.BusinessLayer
                     lamp.TurnOn();
                 }
             }
+            this.IsOn = !this.IsOn;
         }
 
         // Data access:
