@@ -12,13 +12,21 @@ namespace GloeilampSysteem.BusinessLayer
     /// </summary>
     public class Lightswitch
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
         public bool IsOn { get; set; }
 
         public List<Lamp> Lamps { get; set; }
+
+        /// <summary>
+        /// Default constructor. Do not use. Needed for deserialization of json files
+        /// </summary>
+        public Lightswitch()
+        {
+
+        }
 
         /// <summary>
         /// Constructor
@@ -29,6 +37,17 @@ namespace GloeilampSysteem.BusinessLayer
         {
             Lamps = new List<Lamp>();
             this.Id = id;
+            this.Name = name;
+            IsOn = false;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name">The name of the lightswitch</param>
+        public Lightswitch(string name)
+        {
+            Lamps = new List<Lamp>();
             this.Name = name;
             IsOn = false;
         }
@@ -70,7 +89,11 @@ namespace GloeilampSysteem.BusinessLayer
         public void Create()
         {
             // controles zouden hier plaats moeten vinden
-            
+            if (Id != 0)
+            {
+                throw new Exception("Kan geen schakelaar aanmaken als de schakelaar al een id heeft (schakelaar bestaat al?)");
+            }
+
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
             iDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
@@ -84,7 +107,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>A list with all lightswitches</returns>
         public static List<Lightswitch> Read()
         {
-            iDataAccessLayer dal = DAL.Instance; // Todo singleton pattern toepassen
+            iDataAccessLayer dal = DAL.Instance; 
             return dal.ReadLightswitches();
         }
 

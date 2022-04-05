@@ -4,16 +4,13 @@ using GloeilampSysteem.BusinessLayer;
 
 Console.WriteLine("Lamp and Lightswitch example");
 
-//Create lightswitch
-//LightSwitch lswitch = new LightSwitch(10, "Test A1D1 20220321");
-//lswitch.ConnectLamp(new Lamp(1, "Lamp 1"));
-//lswitch.ConnectLamp(new Lamp(2, "Lamp 2"));
-//lswitch.CreateInDb();
 
-// Create lightswitch (
-Lightswitch lswitch = new Lightswitch(10, "Test A1D1");
-lswitch.Delete();
+// Create lightswitch 
+Lightswitch lswitch = new Lightswitch($"Test lightswitch {DateTime.Now}");
+lswitch.ConnectLamp(new Lamp("Lamp 1"));
+lswitch.ConnectLamp(new Lamp("Lamp 2"));
 lswitch.Create();
+
 
 // Show data
 foreach (var s in Lightswitch.Read())
@@ -26,6 +23,7 @@ foreach (var s in Lightswitch.Read())
     }
 }
 
+/*
 // Delete lightswitch 
 Console.WriteLine("Geef id voor de te verwijderen switch:");
 var value = Int32.Parse(Console.ReadLine());

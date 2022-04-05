@@ -11,8 +11,8 @@ namespace GloeilampSysteem.DataAccessLayer
 {
     public class DapperDAL : iDataAccessLayer
     {
-        string connectionString = "Server=LB1908062\\MSSQLSERVER2019;Database=RobsHouseLightning;User Id=Party;Password=Feest123;";
-        //string connectionString = "Data Source =.; Initial Catalog = GloeilampSysteem; Integrated Security = True";
+        //string connectionString = "Server=LB1908062\\MSSQLSERVER2019;Database=RobsHouseLightning;User Id=Party;Password=Feest123;";
+        string connectionString = "Data Source =.; Initial Catalog = GloeilampSysteem; Integrated Security = True";
         List<Lightswitch> lightSwitches = new List<Lightswitch>();
 
         public DapperDAL()
@@ -64,6 +64,7 @@ namespace GloeilampSysteem.DataAccessLayer
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
             {               
                 var output = connection.QueryFirst<Lightswitch>("dbo.GetLightSwitchById @id", new {id = id});
+                //Todo: Create lamps
                 return output;
             }    
         }

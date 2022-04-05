@@ -13,13 +13,13 @@ namespace GloeilampSysteem.DataAccessLayer
     /// </summary>
     public class JsonDAL : iDataAccessLayer
     {
-        List<Lightswitch> lightSwitches = new List<Lightswitch>();
-        string lightSwitchesFileName = "lightswitches.json";
+        List<Lightswitch> lightswitches = new List<Lightswitch>();
+        string lightswitchesFileName = "lightswitches.json";
 
         public JsonDAL()
         {
             this.GetFromFile();
-            if (lightSwitches.Count == 0)
+            if (lightswitches.Count == 0)
             {
                 // create dummydata
                 this.CreateDummyData();        
@@ -30,17 +30,17 @@ namespace GloeilampSysteem.DataAccessLayer
         {
             try
             {
-                lightSwitches = JsonSerializer.Deserialize<List<Lightswitch>>(File.ReadAllText(lightSwitchesFileName));
+                lightswitches = JsonSerializer.Deserialize<List<Lightswitch>>(File.ReadAllText(lightswitchesFileName));
             }
             catch (Exception)
             {
-                lightSwitches.Clear();
+                lightswitches.Clear();
             }
         }
         
         private void SaveToFile()
         {
-            File.WriteAllText(lightSwitchesFileName, JsonSerializer.Serialize(lightSwitches));
+            File.WriteAllText(lightswitchesFileName, JsonSerializer.Serialize(lightswitches));
 
         }
         private void CreateDummyData()
@@ -50,22 +50,34 @@ namespace GloeilampSysteem.DataAccessLayer
             lightswitch.ConnectLamp(new Lamp(2, "Lamp 2"));
             lightswitch.ConnectLamp(new Lamp(3, "Lamp 3"));
             lightswitch.ConnectLamp(new Lamp(4, "Lamp 4"));
-            lightSwitches.Add(lightswitch);
+            lightswitches.Add(lightswitch);
 
             Lightswitch lightswitch2 = new Lightswitch(2, "Lightswitch 2");
             lightswitch2.ConnectLamp(new Lamp(5, "Lamp 5"));
             lightswitch2.ConnectLamp(new Lamp(6, "Lamp 6"));
-            lightSwitches.Add(lightswitch2);
+            lightswitches.Add(lightswitch2);
 
             this.SaveToFile();
         }
 
 
-        public Lightswitch CreateLightswitch(Lightswitch lightSwitch)
+        public Lightswitch CreateLightswitch(Lightswitch lightswitch)
         {
-            lightSwitches.Add(lightSwitch);
+            // create ids
+            int maxId = lightswitches.Max(l => l.Id) + 1;
+            lightswitch.Id = maxId++;
+            if (lightswitch.Lamps.Count > 0)
+            {
+                maxId = lightswitch.Lamps.Max(l => l.Id) + 1;
+                foreach (var lamp in lightswitch.Lamps)
+                {
+                    lamp.Id = maxId++;
+                }
+            }
+
+            lightswitches.Add(lightswitch);
             this.SaveToFile();
-            return lightSwitch;
+            return lightswitch;
         }
 
         public void DeleteLamp(Lamp lamp)
@@ -77,7 +89,7 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public void DeleteLightswitch(Lightswitch lightSwitch)
         {
-            lightSwitches.Remove(lightSwitch);
+            lightswitches.Remove(lightSwitch);
             this.SaveToFile();
         }
 
@@ -88,12 +100,12 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public Lightswitch ReadLightswitch(int id)
         {
-            return lightSwitches.Find(x => x.Id == id);
+            return lightswitches.Find(x => x.Id == id);
         }
 
         public List<Lightswitch> ReadLightswitches()
         {
-            return lightSwitches; 
+            return lightswitches; 
         }
 
         public Lamp UpdateLamp(Lamp lamp)
@@ -104,9 +116,9 @@ namespace GloeilampSysteem.DataAccessLayer
         public Lightswitch UpdateLightswitch(Lightswitch lightSwitch)
         {
             // replace the lightswitch
-            var toDelete = lightSwitches.Find(x => x.Id == lightSwitch.Id);
-            lightSwitches.Remove(toDelete);
-            lightSwitches.Add(lightSwitch);
+            var toDelete = lightswitches.Find(x => x.Id == lightSwitch.Id);
+            lightswitches.Remove(toDelete);
+            lightswitches.Add(lightSwitch);
 
             this.SaveToFile();
             return lightSwitch;

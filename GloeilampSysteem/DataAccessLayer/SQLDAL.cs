@@ -64,7 +64,7 @@ namespace GloeilampSysteem.DataAccessLayer
             return lightSwitches;
         }
 
-        public Lightswitch CreateLightswitch(Lightswitch lightSwitch)
+        public Lightswitch CreateLightswitch(Lightswitch lightswitch)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -73,8 +73,8 @@ namespace GloeilampSysteem.DataAccessLayer
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@name", lightSwitch.Name);
-                    if (lightSwitch.IsOn)
+                    command.Parameters.AddWithValue("@name", lightswitch.Name);
+                    if (lightswitch.IsOn)
                     {
                         command.Parameters.AddWithValue("@ison", 1);
                     }
@@ -83,17 +83,21 @@ namespace GloeilampSysteem.DataAccessLayer
                         command.Parameters.AddWithValue("@ison", 0);
                     }
                     command.ExecuteNonQuery();
-                }
-                //todo get lightswitch id!
 
-                foreach (var lamp in lightSwitch.Lamps)
+                    command.CommandText = "SELECT CAST(@@Identity as INT);";
+                    int addId = (int)command.ExecuteScalar();
+                    lightswitch.Id = addId;
+
+                }
+             
+                foreach (var lamp in lightswitch.Lamps)
                 {
                     sql = "INSERT INTO Lamp(Name, IsOn, LightSwitchId) VALUES (@name, @ison, @lightswitchid)";
                     
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@name", lamp.Name);
-                        if (lightSwitch.IsOn)
+                        if (lightswitch.IsOn)
                         {
                             command.Parameters.AddWithValue("@ison", 1);
                         }
@@ -101,12 +105,16 @@ namespace GloeilampSysteem.DataAccessLayer
                         {
                             command.Parameters.AddWithValue("@ison", 0);
                         }
-                        command.Parameters.AddWithValue("@lightswitchid", lightSwitch.Id);
+                        command.Parameters.AddWithValue("@lightswitchid", lightswitch.Id);
                         command.ExecuteNonQuery();
+
+                        command.CommandText = "SELECT CAST(@@Identity as INT);";
+                        int addId = (int)command.ExecuteScalar();
+                        lamp.Id = addId;
                     }
                 }
             }
-            return lightSwitch;
+            return lightswitch;
         }
 
         public void DeleteLamp(Lamp lamp)

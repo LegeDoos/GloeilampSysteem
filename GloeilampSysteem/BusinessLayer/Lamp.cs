@@ -23,6 +23,14 @@ namespace GloeilampSysteem.BusinessLayer
         [System.Text.Json.Serialization.JsonIgnore] // json serializer loop error voorkomen
         public Lightswitch? LightSwitch { get; set; }
 
+
+        /// <summary>
+        /// Default constructor. Do not use. Needed for deserialization of json files
+        /// </summary>
+        public Lamp()
+        {
+
+        }
         /// <summary>
         /// Constructor
         /// </summary>
@@ -33,6 +41,16 @@ namespace GloeilampSysteem.BusinessLayer
             this.Id = id;
             this.Name = name;
         }
+
+        /// <summary>
+        /// Constructor when I is unknown
+        /// </summary>
+        /// <param name="name">The name of the lamp</param>
+        public Lamp(string name)
+        {
+            this.Name = name;
+        }
+
 
         /// <summary>
         /// Turn on the lamp
@@ -69,6 +87,10 @@ namespace GloeilampSysteem.BusinessLayer
         public void Create()
         {
             // controles zouden hier plaats moeten vinden
+            if (Id != 0)
+            {
+                throw new Exception("Kan geen lamp aanmaken als de lamp al een id heeft (lamp bestaat al?)");
+            }
 
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
