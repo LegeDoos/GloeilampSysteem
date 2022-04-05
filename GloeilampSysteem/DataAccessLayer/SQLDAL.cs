@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace GloeilampSysteem.DataAccessLayer
 {
-    public class SQLDAL 
-        : iDataAccessLayer
+    public class SQLDAL : iDataAccessLayer
     {
         string connectionString = "Data Source=.;Initial Catalog=GloeilampSysteem;Integrated Security=True";
         List<LightSwitch> lightSwitches = new List<LightSwitch>();
@@ -172,5 +171,9 @@ namespace GloeilampSysteem.DataAccessLayer
             throw new NotImplementedException();
         }
 
+        public Lamp CreateLamp(Lamp lamp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

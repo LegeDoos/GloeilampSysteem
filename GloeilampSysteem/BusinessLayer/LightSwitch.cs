@@ -53,11 +53,11 @@ namespace GloeilampSysteem.BusinessLayer
             {
                 if (lamp.IsOn)
                 {
-                    lamp.Uitzetten();
+                    lamp.TurnOff();
                 }
                 else
                 {
-                    lamp.Aanzetten();
+                    lamp.TurnOn();
                 }
             }
         }

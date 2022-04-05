@@ -108,6 +108,9 @@ namespace GloeilampSysteem.DataAccessLayer
             }
         }
 
-        
+        public Lamp CreateLamp(Lamp lamp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

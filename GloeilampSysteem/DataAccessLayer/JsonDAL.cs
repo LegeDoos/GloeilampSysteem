@@ -112,5 +112,9 @@ namespace GloeilampSysteem.DataAccessLayer
             return lightSwitch;
         }
 
+        public Lamp CreateLamp(Lamp lamp)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

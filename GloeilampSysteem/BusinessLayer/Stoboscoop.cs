@@ -15,9 +15,9 @@ namespace GloeilampSysteem.BusinessLayer
             frequency = freq;
         }
 
-        public override void Aanzetten()
+        public override void TurnOn()
         {
-            base.Aanzetten();
+            base.TurnOn();
             int msPauze = 1000 / frequency;
 
             while (true)
@@ -25,11 +25,11 @@ namespace GloeilampSysteem.BusinessLayer
                 Thread.Sleep(msPauze);
                 if (IsOn)
                 {
-                    base.Uitzetten();
+                    base.TurnOff();
                 }
                 else
                 {
-                    base.Aanzetten();
+                    base.TurnOn();
                 }
             }
            
@@ -37,9 +37,9 @@ namespace GloeilampSysteem.BusinessLayer
           
         }
 
-        public override void Uitzetten()
+        public override void TurnOff()
         {
-            base.Uitzetten();
+            base.TurnOff();
         }
     }
 }

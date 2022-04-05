@@ -13,6 +13,7 @@ namespace GloeilampSysteem.DataAccessLayer
         // data access layer heeft weet van de BusinessLayer en kan daarom objecten uit het model gebruiken (zie ook usings)
         // interface geeft aan wat je in de DAL verwacht
 
+        public Lamp CreateLamp(Lamp lamp);
         public Lamp GetLampById(int id);
         public Lamp UpdateLamp(Lamp lamp);
         public void DeleteLampById(Lamp lamp);
