@@ -11,6 +11,8 @@ namespace GloeilampSysteem.DataAccessLayer
     public class SQLDAL : iDataAccessLayer
     {
         string connectionString = "Data Source=.;Initial Catalog=GloeilampSysteem;Integrated Security=True";
+        //string connectionString = "Server=LB1908062\\MSSQLSERVER2019;Database=RobsHouseLightning;Integrated Security=True";
+        
         List<Lightswitch> lightSwitches = new List<Lightswitch>();
 
         public SQLDAL()
@@ -128,7 +130,7 @@ namespace GloeilampSysteem.DataAccessLayer
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@name", lamp.Id);
+                    command.Parameters.AddWithValue("@lampid", lamp.Id);
                     command.ExecuteNonQuery();
                 }
             }
