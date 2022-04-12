@@ -30,7 +30,6 @@
         {
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.currentDalStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lightswitchGroupBox = new System.Windows.Forms.GroupBox();
             this.lightswitchDataGridView = new System.Windows.Forms.DataGridView();
             this.lightswitchButtonsGroupBox = new System.Windows.Forms.GroupBox();
@@ -55,8 +54,7 @@
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.currentDalStatusLabel,
-            this.toolStripStatusLabel1});
+            this.currentDalStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 428);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(800, 22);
@@ -68,12 +66,6 @@
             this.currentDalStatusLabel.Name = "currentDalStatusLabel";
             this.currentDalStatusLabel.Size = new System.Drawing.Size(78, 17);
             this.currentDalStatusLabel.Text = "Current DAL: ";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // lightswitchGroupBox
             // 
@@ -251,6 +243,5 @@
         private Button deleteLightswitchButton;
         private Button deleteLampButton;
         private Button createLampButton;
-        private ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
