@@ -30,6 +30,7 @@
         {
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.currentDalStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lightswitchGroupBox = new System.Windows.Forms.GroupBox();
             this.lightswitchDataGridView = new System.Windows.Forms.DataGridView();
             this.lightswitchButtonsGroupBox = new System.Windows.Forms.GroupBox();
@@ -41,7 +42,6 @@
             this.lampButtonsGroupBox = new System.Windows.Forms.GroupBox();
             this.deleteLampButton = new System.Windows.Forms.Button();
             this.createLampButton = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip.SuspendLayout();
             this.lightswitchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lightswitchDataGridView)).BeginInit();
@@ -68,6 +68,12 @@
             this.currentDalStatusLabel.Name = "currentDalStatusLabel";
             this.currentDalStatusLabel.Size = new System.Drawing.Size(78, 17);
             this.currentDalStatusLabel.Text = "Current DAL: ";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // lightswitchGroupBox
             // 
@@ -168,7 +174,7 @@
             this.lampsDataGridView.RowTemplate.Height = 29;
             this.lampsDataGridView.Size = new System.Drawing.Size(403, 345);
             this.lampsDataGridView.TabIndex = 2;
-            this.lampsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lampsDataGridView_CellClick);
+            this.lampsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lampsDataGridView_CellClick);            
             this.lampsDataGridView.SelectionChanged += new System.EventHandler(this.lampsDataGridView_SelectionChanged);
             // 
             // lampButtonsGroupBox
@@ -205,12 +211,6 @@
             this.createLampButton.Text = "Create";
             this.createLampButton.UseVisualStyleBackColor = true;
             this.createLampButton.Click += new System.EventHandler(this.createLampButton_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // LightswitchAndLampForm
             // 

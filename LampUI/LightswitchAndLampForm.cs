@@ -75,7 +75,13 @@ namespace LampUI
 
         private void deleteLampButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{selectedLamp.Name}");
+            //remove the lamp from the switch
+            selectedLightswitch.Lamps.Remove(selectedLamp);
+            //persist removal of lamp
+            selectedLamp.Delete();
+            //refresh the grid            
+            lampsDataGridView.DataSource = null;
+            lampsDataGridView.DataSource = selectedLightswitch.Lamps;
         }
 
         private void lampsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -86,6 +92,6 @@ namespace LampUI
         private void lampsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             RefreshData();
-        }
+        }        
     }
 }
