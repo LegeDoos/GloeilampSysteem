@@ -11,19 +11,18 @@ namespace LampUI
         {
             InitializeComponent();
             currentDalStatusLabel.Text = $"Current DAL: {new DataAccessLayerInfo().DALName}";
-            ReadData();
+            InitialReadData();
         }
 
-        private void ReadData()
+        private void InitialReadData()
         {
             var switches = Lightswitch.Read();
             lightswitchDataGridView.DataSource = switches;
-            RefreshData();
+            RefreshDataSource();
         }
 
-        private void RefreshData()
+        private void RefreshDataSource()
         {
-
             if (lightswitchDataGridView.Rows.Count > 0
                 && (lightswitchDataGridView.SelectedRows.Count > 0 || lightswitchDataGridView.SelectedCells.Count > 0))
             {
@@ -41,9 +40,13 @@ namespace LampUI
                 // update selected lamp
                 selectedLamp = lampsDataGridView.CurrentRow.DataBoundItem as Lamp;
             }
-
         }
 
+        private void RefreshLampGridData()
+        {
+            lampsDataGridView.DataSource = null;
+            lampsDataGridView.DataSource = selectedLightswitch.Lamps;
+        }
 
         private void createLightSwitchButton_Click(object sender, EventArgs e)
         {
@@ -56,16 +59,26 @@ namespace LampUI
         {
             var dialog = new GetNameDialog();
             dialog.ShowDialog();
+            string name = dialog.EnteredName;
+            
+            if (!String.IsNullOrEmpty(name))
+            {
+                Lamp newLamp = new Lamp(name);
+                newLamp.LightSwitch = selectedLightswitch;
+                newLamp.Create();
+                RefreshLampGridData();
+            }
+            
         }
 
         private void lightswitchDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            RefreshData();
+            RefreshDataSource();
         }
 
         private void lightswitchDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            RefreshData();
+            RefreshDataSource();
         }
 
         private void deleteLightswitchButton_Click(object sender, EventArgs e)
@@ -80,18 +93,17 @@ namespace LampUI
             //persist removal of lamp
             selectedLamp.Delete();
             //refresh the grid            
-            lampsDataGridView.DataSource = null;
-            lampsDataGridView.DataSource = selectedLightswitch.Lamps;
+            RefreshLampGridData();
         }
 
         private void lampsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            RefreshData();
+            RefreshDataSource();
         }
 
         private void lampsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            RefreshData();
+            RefreshDataSource();
         }        
     }
 }

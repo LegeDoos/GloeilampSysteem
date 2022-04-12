@@ -10,15 +10,22 @@ using System.Windows.Forms;
 
 namespace LampUI
 {
+    /// <summary>
+    /// Represents a dialog to get userinput (name)
+    /// </summary>
     public partial class GetNameDialog : Form
     {
+        public string EnteredName { get; set; } = string.Empty;
+
         public GetNameDialog()
         {
             InitializeComponent();
+            nameTextbox.Text = EnteredName;
         }
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            EnteredName = nameTextbox.Text;
             this.Close();
         }
     }
