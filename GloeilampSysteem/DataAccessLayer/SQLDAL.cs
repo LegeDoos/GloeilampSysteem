@@ -184,7 +184,7 @@ namespace GloeilampSysteem.DataAccessLayer
                     command.Parameters.AddWithValue("@name", lamp.Name);
                     command.Parameters.AddWithValue("@ison", lamp.IsOn ? 1 : 0);
                     command.Parameters.AddWithValue("@state", lamp.State);
-                    command.Parameters.AddWithValue("@lightswitchid", lamp.LightSwitch.Id);
+                    command.Parameters.AddWithValue("@lightswitchid", lamp.LightSwitch?.Id);
                     command.Parameters.AddWithValue("@id", lamp.Id);
                     command.ExecuteNonQuery();
                 }

@@ -14,15 +14,14 @@ namespace GloeilampSysteem.BusinessLayer
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
-        public bool IsOn { get; set; }
+        public bool IsOn { get; set; } = false;
 
-        public string State { get; set; }
+        public string State { get; set; } = "New";
 
         [System.Text.Json.Serialization.JsonIgnore] // json serializer loop error voorkomen
         public Lightswitch? LightSwitch { get; set; }
-
 
         /// <summary>
         /// Default constructor. Do not use. Needed for deserialization of json files

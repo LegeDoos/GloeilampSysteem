@@ -14,18 +14,17 @@ namespace GloeilampSysteem.BusinessLayer
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
-        public bool IsOn { get; set; }
+        public bool IsOn { get; set; } = false;
 
-        public List<Lamp> Lamps { get; set; }
+        public List<Lamp>? Lamps { get; set; }
 
         /// <summary>
         /// Default constructor. Do not use. Needed for deserialization of json files
         /// </summary>
         public Lightswitch()
         {
-
         }
 
         /// <summary>
@@ -58,7 +57,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <param name="theLamp">The lamp to connect to the lightswitch</param>
         public void ConnectLamp(Lamp theLamp)
         {
-            Lamps.Add(theLamp);
+            Lamps?.Add(theLamp);
             theLamp.ConnectLightswitch(this);
         }
 

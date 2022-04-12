@@ -34,7 +34,7 @@ namespace GloeilampSysteem.DataAccessLayer
             }
             catch (Exception)
             {
-                lightswitches.Clear();
+                lightswitches?.Clear();
             }
         }
         
@@ -66,7 +66,7 @@ namespace GloeilampSysteem.DataAccessLayer
             // create ids
             int maxId = lightswitches.Count == 0 ? 1 : lightswitches.Max(l => l.Id) + 1;
             lightswitch.Id = maxId++;
-            if (lightswitch.Lamps.Count > 0)
+            if (lightswitch.Lamps?.Count > 0)
             {
                 maxId = lightswitch.Lamps.Max(l => l.Id) + 1;
                 foreach (var lamp in lightswitch.Lamps)
@@ -83,7 +83,7 @@ namespace GloeilampSysteem.DataAccessLayer
         public void DeleteLamp(Lamp lamp)
         {
             // get the lightswitch
-            lamp.LightSwitch?.Lamps.Remove(lamp);
+            lamp.LightSwitch?.Lamps?.Remove(lamp);
             this.SaveToFile();
         }
 
