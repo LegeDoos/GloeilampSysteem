@@ -23,7 +23,7 @@ namespace LampUI
             nameTextbox.Text = EnteredName;
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             EnteredName = nameTextbox.Text;
             this.Close();

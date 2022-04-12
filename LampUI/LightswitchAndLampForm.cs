@@ -56,7 +56,7 @@ namespace LampUI
             lampsDataGridView.DataSource = selectedLightswitch.Lamps;
         }
 
-        private void createLightSwitchButton_Click(object sender, EventArgs e)
+        private void CreateLightSwitchButton_Click(object sender, EventArgs e)
         {
             var dialog = new GetNameDialog();
             dialog.ShowDialog();
@@ -68,7 +68,7 @@ namespace LampUI
             }
         }
 
-        private void createLampButton_Click(object sender, EventArgs e)
+        private void CreateLampButton_Click(object sender, EventArgs e)
         {
             var dialog = new GetNameDialog();
             dialog.ShowDialog();
@@ -85,23 +85,23 @@ namespace LampUI
             
         }
 
-        private void lightswitchDataGridView_SelectionChanged(object sender, EventArgs e)
+        private void LightswitchDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             RefreshDataSource();
         }
 
-        private void lightswitchDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void LightswitchDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             RefreshDataSource();
         }
 
-        private void deleteLightswitchButton_Click(object sender, EventArgs e)
+        private void DeleteLightswitchButton_Click(object sender, EventArgs e)
         {
             selectedLightswitch.Delete();
             InitialReadData();
         }
 
-        private void deleteLampButton_Click(object sender, EventArgs e)
+        private void DeleteLampButton_Click(object sender, EventArgs e)
         {
             //remove the lamp from the switch
             selectedLightswitch.Lamps.Remove(selectedLamp);
@@ -111,17 +111,17 @@ namespace LampUI
             RefreshLampGridData();
         }
 
-        private void lampsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void LampsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             RefreshDataSource();
         }
 
-        private void lampsDataGridView_SelectionChanged(object sender, EventArgs e)
+        private void LampsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             RefreshDataSource();
         }
 
-        private void toggleLightswitchButton_Click(object sender, EventArgs e)
+        private void ToggleLightswitchButton_Click(object sender, EventArgs e)
         {
             selectedLightswitch.Toggle();
             selectedLightswitch.Update();

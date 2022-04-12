@@ -91,8 +91,8 @@
             this.lightswitchDataGridView.RowHeadersWidth = 51;
             this.lightswitchDataGridView.Size = new System.Drawing.Size(385, 345);
             this.lightswitchDataGridView.TabIndex = 1;
-            this.lightswitchDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lightswitchDataGridView_CellClick);
-            this.lightswitchDataGridView.SelectionChanged += new System.EventHandler(this.lightswitchDataGridView_SelectionChanged);
+            this.lightswitchDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LightswitchDataGridView_CellClick);
+            this.lightswitchDataGridView.SelectionChanged += new System.EventHandler(this.LightswitchDataGridView_SelectionChanged);
             // 
             // lightswitchButtonsGroupBox
             // 
@@ -117,7 +117,7 @@
             this.toggleLightswitchButton.TabIndex = 2;
             this.toggleLightswitchButton.Text = "Toggle";
             this.toggleLightswitchButton.UseVisualStyleBackColor = true;
-            this.toggleLightswitchButton.Click += new System.EventHandler(this.toggleLightswitchButton_Click);
+            this.toggleLightswitchButton.Click += new System.EventHandler(this.ToggleLightswitchButton_Click);
             // 
             // deleteLightswitchButton
             // 
@@ -128,7 +128,7 @@
             this.deleteLightswitchButton.TabIndex = 1;
             this.deleteLightswitchButton.Text = "Delete";
             this.deleteLightswitchButton.UseVisualStyleBackColor = true;
-            this.deleteLightswitchButton.Click += new System.EventHandler(this.deleteLightswitchButton_Click);
+            this.deleteLightswitchButton.Click += new System.EventHandler(this.DeleteLightswitchButton_Click);
             // 
             // createLightSwitchButton
             // 
@@ -139,7 +139,7 @@
             this.createLightSwitchButton.TabIndex = 0;
             this.createLightSwitchButton.Text = "Create";
             this.createLightSwitchButton.UseVisualStyleBackColor = true;
-            this.createLightSwitchButton.Click += new System.EventHandler(this.createLightSwitchButton_Click);
+            this.createLightSwitchButton.Click += new System.EventHandler(this.CreateLightSwitchButton_Click);
             // 
             // lampsGroupBox
             // 
@@ -167,8 +167,8 @@
             this.lampsDataGridView.RowTemplate.Height = 29;
             this.lampsDataGridView.Size = new System.Drawing.Size(403, 345);
             this.lampsDataGridView.TabIndex = 2;
-            this.lampsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lampsDataGridView_CellClick);
-            this.lampsDataGridView.SelectionChanged += new System.EventHandler(this.lampsDataGridView_SelectionChanged);
+            this.lampsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LampsDataGridView_CellClick);
+            this.lampsDataGridView.SelectionChanged += new System.EventHandler(this.LampsDataGridView_SelectionChanged);
             // 
             // lampButtonsGroupBox
             // 
@@ -192,7 +192,7 @@
             this.deleteLampButton.TabIndex = 3;
             this.deleteLampButton.Text = "Delete";
             this.deleteLampButton.UseVisualStyleBackColor = true;
-            this.deleteLampButton.Click += new System.EventHandler(this.deleteLampButton_Click);
+            this.deleteLampButton.Click += new System.EventHandler(this.DeleteLampButton_Click);
             // 
             // createLampButton
             // 
@@ -203,7 +203,7 @@
             this.createLampButton.TabIndex = 2;
             this.createLampButton.Text = "Create";
             this.createLampButton.UseVisualStyleBackColor = true;
-            this.createLampButton.Click += new System.EventHandler(this.createLampButton_Click);
+            this.createLampButton.Click += new System.EventHandler(this.CreateLampButton_Click);
             // 
             // LightswitchAndLampForm
             // 
