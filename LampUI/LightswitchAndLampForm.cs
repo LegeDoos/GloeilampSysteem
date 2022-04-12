@@ -80,7 +80,7 @@ namespace LampUI
                 newLamp.LightSwitch = selectedLightswitch;
                 newLamp.IsOn = selectedLightswitch.IsOn;
                 newLamp.Create();
-                RefreshLampGridData();
+                InitialReadData();
             }
             
         }

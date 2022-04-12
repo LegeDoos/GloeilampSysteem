@@ -99,7 +99,7 @@ namespace GloeilampSysteem.DataAccessLayer
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         command.Parameters.AddWithValue("@name", lamp.Name);
-                        if (lightswitch.IsOn)
+                        if (lamp.IsOn)
                         {
                             command.Parameters.AddWithValue("@ison", 1);
                         }
@@ -215,7 +215,32 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public Lamp CreateLamp(Lamp lamp)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = "INSERT INTO Lamp(Name, IsOn, LightSwitchId) VALUES (@name, @ison, @lightswitchid)";
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@name", lamp.Name);
+                    if (lamp.IsOn)
+                    {
+                        command.Parameters.AddWithValue("@ison", 1);
+                    }
+                    else
+                    {
+                        command.Parameters.AddWithValue("@ison", 0);
+                    }
+                    command.Parameters.AddWithValue("@lightswitchid", lamp.LightSwitch.Id);
+                    command.ExecuteNonQuery();
+
+                    command.CommandText = "SELECT CAST(@@Identity as INT);";
+                    int addId = (int)command.ExecuteScalar();
+                    lamp.Id = addId;
+                }
+
+            }
+            return lamp;
         }
     }
 }
