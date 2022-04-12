@@ -83,7 +83,7 @@ namespace GloeilampSysteem.DataAccessLayer
         public void DeleteLamp(Lamp lamp)
         {
             // get the lightswitch
-            lamp.LightSwitch.Lamps.Remove(lamp);
+            lamp.LightSwitch?.Lamps.Remove(lamp);
             this.SaveToFile();
         }
 
