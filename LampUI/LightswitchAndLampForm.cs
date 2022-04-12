@@ -60,7 +60,12 @@ namespace LampUI
         {
             var dialog = new GetNameDialog();
             dialog.ShowDialog();
-
+            if (!String.IsNullOrEmpty(dialog.EnteredName))
+            {
+                Lightswitch newLightswitch = new Lightswitch(dialog.EnteredName);
+                newLightswitch.Create();
+                InitialReadData();
+            }
         }
 
         private void createLampButton_Click(object sender, EventArgs e)
