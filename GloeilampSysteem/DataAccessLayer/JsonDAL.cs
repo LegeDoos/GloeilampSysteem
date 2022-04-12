@@ -126,7 +126,27 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public Lamp CreateLamp(Lamp lamp)
         {
-            throw new NotImplementedException();
+            // Add the lamp to the list of lamps of the lightswitch if not exists
+            if (lamp.LightSwitch == null)
+            {
+                throw new Exception("Geen lichtschakelaar ingesteld!");
+            }
+            else
+            {
+                if (lamp.LightSwitch.Lamps == null)
+                {
+                    lamp.LightSwitch.Lamps = new List<Lamp>();
+                }
+                if (!lamp.LightSwitch.Lamps.Contains(lamp))
+                {
+                    // create id
+                    lamp.Id = lamp.LightSwitch.Lamps.Count == 0 ? 1 : lamp.LightSwitch.Lamps.Max(l => l.Id) + 1;
+                    // add to lightswitch
+                    lamp.LightSwitch.Lamps.Add(lamp);
+                }
+            }
+            this.SaveToFile();
+            return lamp;
         }
     }
 }
