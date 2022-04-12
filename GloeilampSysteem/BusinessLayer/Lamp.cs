@@ -29,7 +29,6 @@ namespace GloeilampSysteem.BusinessLayer
         /// </summary>
         public Lamp()
         {
-
         }
         /// <summary>
         /// Constructor
@@ -38,8 +37,9 @@ namespace GloeilampSysteem.BusinessLayer
         /// <param name="name">The name of the lamp</param>
         public Lamp(int id, string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+            Name = name;
+            State = "New";
         }
 
         /// <summary>
@@ -48,7 +48,8 @@ namespace GloeilampSysteem.BusinessLayer
         /// <param name="name">The name of the lamp</param>
         public Lamp(string name)
         {
-            this.Name = name;
+            Name = name;
+            State = "New";
         }
 
 

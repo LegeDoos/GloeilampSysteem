@@ -64,7 +64,7 @@ namespace GloeilampSysteem.DataAccessLayer
         public Lightswitch CreateLightswitch(Lightswitch lightswitch)
         {
             // create ids
-            int maxId = lightswitches.Max(l => l.Id) + 1;
+            int maxId = lightswitches.Count() == 0 ? 1 : lightswitches.Max(l => l.Id) + 1;
             lightswitch.Id = maxId++;
             if (lightswitch.Lamps.Count > 0)
             {
