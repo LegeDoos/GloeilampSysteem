@@ -11,10 +11,10 @@ namespace GloeilampSysteem.DataAccessLayer
     /// <summary>
     /// Dit zou in een betere vorm een singleton worden (singleton pattern) om te voorkomen dat er telkens een nieuwe instance wordt gemaakt!
     /// </summary>
-    public class JsonDAL : iDataAccessLayer
+    public class JsonDAL : IDataAccessLayer
     {
         List<Lightswitch> lightswitches = new List<Lightswitch>();
-        string lightswitchesFileName = "lightswitches.json";
+        readonly string lightswitchesFileName = "lightswitches.json";
 
         public JsonDAL()
         {
@@ -64,7 +64,7 @@ namespace GloeilampSysteem.DataAccessLayer
         public Lightswitch CreateLightswitch(Lightswitch lightswitch)
         {
             // create ids
-            int maxId = lightswitches.Count() == 0 ? 1 : lightswitches.Max(l => l.Id) + 1;
+            int maxId = lightswitches.Count == 0 ? 1 : lightswitches.Max(l => l.Id) + 1;
             lightswitch.Id = maxId++;
             if (lightswitch.Lamps.Count > 0)
             {

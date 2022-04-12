@@ -97,7 +97,7 @@ namespace GloeilampSysteem.BusinessLayer
 
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
-            iDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
+            IDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
             var result = dal.CreateLightswitch(this);
             this.Id = result.Id;
         }
@@ -108,7 +108,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>A list with all lightswitches</returns>
         public static List<Lightswitch> Read()
         {
-            iDataAccessLayer dal = DAL.Instance; 
+            IDataAccessLayer dal = DAL.Instance; 
             return dal.ReadLightswitches();
         }
 
@@ -119,7 +119,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>The specific lightswitch</returns>
         public static Lightswitch Read(int id)
         {
-            iDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DAL.Instance;
             return dal.ReadLightswitch(id);
         }
 
@@ -129,7 +129,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>The updated lightswitch</returns>
         public Lightswitch Update()
         {
-            iDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DAL.Instance;
             return dal.UpdateLightswitch(this);
         }
 
@@ -138,7 +138,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// </summary>
         public void Delete()
         {
-            iDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DAL.Instance;
             dal.DeleteLightswitch(this);
         }
     }

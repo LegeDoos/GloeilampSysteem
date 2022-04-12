@@ -9,7 +9,7 @@ using System.Data;
 
 namespace GloeilampSysteem.DataAccessLayer
 {
-    public class DapperDAL : iDataAccessLayer
+    public class DapperDAL : IDataAccessLayer
     {
         //string connectionString = "Server=LB1908062\\MSSQLSERVER2019;Database=RobsHouseLightning;User Id=Party;Password=Feest123;";
         string connectionString = "Data Source =.; Initial Catalog = GloeilampSysteem; Integrated Security = True";

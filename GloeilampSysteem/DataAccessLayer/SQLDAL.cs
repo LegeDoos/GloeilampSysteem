@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace GloeilampSysteem.DataAccessLayer
 {
-    public class SQLDAL : iDataAccessLayer
+    public class SQLDAL : IDataAccessLayer
     {
-        string connectionString = "Data Source=.;Initial Catalog=GloeilampSysteem;Integrated Security=True";
-        List<Lightswitch> lightSwitches = new List<Lightswitch>();
+        readonly string connectionString = "Data Source=.;Initial Catalog=GloeilampSysteem;Integrated Security=True";
 
         public SQLDAL()
         {
@@ -19,7 +18,8 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public List<Lightswitch> ReadLightswitches()
         {
-            lightSwitches.Clear();            
+            List<Lightswitch> lightSwitches;
+            lightSwitches = new List<Lightswitch>();
 
             using (SqlConnection connection = new SqlConnection())
             {
@@ -36,7 +36,7 @@ namespace GloeilampSysteem.DataAccessLayer
                         {
                             var lightSwitch = new Lightswitch(Int32.Parse(reader[0].ToString()),
                                 reader[1].ToString());
-                            lightSwitch.IsOn = Int32.Parse(reader[2].ToString()) == 1 ? true : false;
+                            lightSwitch.IsOn = Int32.Parse(reader[2].ToString()) == 1;
                             lightSwitches.Add(lightSwitch);
                         }
                     }
@@ -55,7 +55,7 @@ namespace GloeilampSysteem.DataAccessLayer
                             {
                                 var lamp = new Lamp(Int32.Parse(reader[0].ToString()), reader[1].ToString());
                                 lamp.State = reader[2].ToString();
-                                lamp.IsOn = Int32.Parse(reader[3].ToString()) == 1 ? true : false;
+                                lamp.IsOn = Int32.Parse(reader[3].ToString()) == 1;
                                 lightSwitch.ConnectLamp(lamp);
                             }
                         }
@@ -170,10 +170,7 @@ namespace GloeilampSysteem.DataAccessLayer
         /// <returns>De gevonden lightswitch</returns>
         public Lightswitch ReadLightswitch(int id)
         {
-            Lightswitch toDelete = lightSwitches.Find(ls => ls.Id == id);
-            lightSwitches.Remove(toDelete);
-
-            return lightSwitches.Find(ls => ls.Id == id);
+            return ReadLightswitches().Find(ls => ls.Id == id);
         }
 
         public Lamp UpdateLamp(Lamp lamp)
