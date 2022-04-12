@@ -17,6 +17,10 @@ namespace LampUI
         private void InitialReadData()
         {
             var switches = Lightswitch.Read();
+            lightswitchDataGridView.DataSource = null;
+            lampsDataGridView.DataSource = null;
+            selectedLightswitch = null;
+            selectedLamp = null;
             lightswitchDataGridView.DataSource = switches;
             RefreshDataSource();
         }
@@ -30,6 +34,7 @@ namespace LampUI
                 if (selectedLightswitch != lightswitchDataGridView.CurrentRow.DataBoundItem as Lightswitch)
                 {
                     selectedLightswitch = lightswitchDataGridView.CurrentRow.DataBoundItem as Lightswitch;
+                    lampsDataGridView.DataSource = null;
                     lampsDataGridView.DataSource = selectedLightswitch.Lamps;
                 }
             }
@@ -40,6 +45,9 @@ namespace LampUI
                 // update selected lamp
                 selectedLamp = lampsDataGridView.CurrentRow.DataBoundItem as Lamp;
             }
+
+            createLampButton.Enabled = selectedLightswitch != null;
+            deleteLampButton.Enabled = selectedLightswitch != null;
         }
 
         private void RefreshLampGridData()
@@ -83,7 +91,8 @@ namespace LampUI
 
         private void deleteLightswitchButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{selectedLightswitch.Name}");
+            selectedLightswitch.Delete();
+            InitialReadData();
         }
 
         private void deleteLampButton_Click(object sender, EventArgs e)
