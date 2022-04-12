@@ -125,6 +125,7 @@
             this.toggleLightswitchButton.TabIndex = 2;
             this.toggleLightswitchButton.Text = "Toggle";
             this.toggleLightswitchButton.UseVisualStyleBackColor = true;
+            this.toggleLightswitchButton.Click += new System.EventHandler(this.toggleLightswitchButton_Click);
             // 
             // deleteLightswitchButton
             // 
@@ -174,7 +175,7 @@
             this.lampsDataGridView.RowTemplate.Height = 29;
             this.lampsDataGridView.Size = new System.Drawing.Size(403, 345);
             this.lampsDataGridView.TabIndex = 2;
-            this.lampsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lampsDataGridView_CellClick);            
+            this.lampsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lampsDataGridView_CellClick);
             this.lampsDataGridView.SelectionChanged += new System.EventHandler(this.lampsDataGridView_SelectionChanged);
             // 
             // lampButtonsGroupBox

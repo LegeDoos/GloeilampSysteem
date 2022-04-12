@@ -43,7 +43,7 @@ namespace LampUI
                 && (lampsDataGridView.SelectedRows.Count > 0 || lampsDataGridView.SelectedCells.Count > 0))
             {
                 // update selected lamp
-                selectedLamp = lampsDataGridView.CurrentRow.DataBoundItem as Lamp;
+                selectedLamp = lampsDataGridView.CurrentRow?.DataBoundItem as Lamp;
             }
 
             createLampButton.Enabled = selectedLightswitch != null;
@@ -78,6 +78,7 @@ namespace LampUI
             {
                 Lamp newLamp = new Lamp(name);
                 newLamp.LightSwitch = selectedLightswitch;
+                newLamp.IsOn = selectedLightswitch.IsOn;
                 newLamp.Create();
                 RefreshLampGridData();
             }
@@ -118,6 +119,13 @@ namespace LampUI
         private void lampsDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             RefreshDataSource();
-        }        
+        }
+
+        private void toggleLightswitchButton_Click(object sender, EventArgs e)
+        {
+            selectedLightswitch.Toggle();
+            selectedLightswitch.Update();
+            InitialReadData();
+        }
     }
 }
