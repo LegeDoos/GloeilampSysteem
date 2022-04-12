@@ -35,7 +35,7 @@ namespace LampUI
                 {
                     selectedLightswitch = lightswitchDataGridView.CurrentRow.DataBoundItem as Lightswitch;
                     lampsDataGridView.DataSource = null;
-                    lampsDataGridView.DataSource = selectedLightswitch.Lamps;
+                    lampsDataGridView.DataSource = selectedLightswitch?.Lamps;
                 }
             }
 
