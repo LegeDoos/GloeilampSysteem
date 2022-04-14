@@ -14,22 +14,20 @@ namespace GloeilampSysteem.BusinessLayer
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
-        public bool IsOn { get; set; }
+        public bool IsOn { get; set; } = false;
 
-        public string State { get; set; }
+        public string State { get; set; } = "New";
 
         [System.Text.Json.Serialization.JsonIgnore] // json serializer loop error voorkomen
         public Lightswitch? LightSwitch { get; set; }
-
 
         /// <summary>
         /// Default constructor. Do not use. Needed for deserialization of json files
         /// </summary>
         public Lamp()
         {
-
         }
         /// <summary>
         /// Constructor
@@ -38,8 +36,9 @@ namespace GloeilampSysteem.BusinessLayer
         /// <param name="name">The name of the lamp</param>
         public Lamp(int id, string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+            Name = name;
+            State = "New";
         }
 
         /// <summary>
@@ -48,7 +47,8 @@ namespace GloeilampSysteem.BusinessLayer
         /// <param name="name">The name of the lamp</param>
         public Lamp(string name)
         {
-            this.Name = name;
+            Name = name;
+            State = "New";
         }
 
 
@@ -94,7 +94,7 @@ namespace GloeilampSysteem.BusinessLayer
 
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
-            iDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
+            IDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
             var result = dal.CreateLamp(this);
             this.Id = result.Id;
         }
@@ -106,7 +106,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>The specific lamp</returns>
         public static Lamp Read(int id)
         {
-            iDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DAL.Instance;
             return dal.ReadLamp(id);
         }
 
@@ -116,7 +116,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>The updated lamp</returns>
         public Lamp Update()
         {
-            iDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DAL.Instance;
             return dal.UpdateLamp(this);
         }
 
@@ -125,7 +125,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// </summary>
         public void Delete()
         {
-            iDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DAL.Instance;
             dal.DeleteLamp(this);
         }
     }
