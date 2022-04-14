@@ -132,7 +132,20 @@ namespace GloeilampSysteem.DataAccessLayer
 
         public Lamp CreateLamp(Lamp lamp)
         {
-            throw new NotImplementedException();
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(connectionString))
+            {
+                var newlamp = new DynamicParameters();                
+                newlamp.Add("Name", lamp.Name);
+                newlamp.Add("ison", lamp.IsOn);
+                newlamp.Add("LSid", lamp.LightSwitch.Id);
+                newlamp.Add("Lid", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                connection.Execute("dbo.InsertLamp", newlamp, commandType: CommandType.StoredProcedure);
+
+                // connect Lightswitch to correct lamps from db by getting right lampid
+                var Lid = newlamp.Get<int>("Lid");
+                lamp.Id = Lid;
+            }
+            return lamp;
         }
     }
 }
