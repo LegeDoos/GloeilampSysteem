@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GloeilampSysteem.BusinessLayer
 {
-    internal class Stoboscoop : Lamp
+    internal class Stroboscoop : Lamp
     {
         int frequency;
 
-        public Stoboscoop(int id, string name, int freq) : base(id, name)
+        public Stroboscoop(int id, string name, int freq) : base(id, name)
         {
             frequency = freq;
         }
