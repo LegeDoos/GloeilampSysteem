@@ -2,9 +2,6 @@
 
 using GloeilampSysteem.BusinessLayer;
 
-string stamp = "202204131344";
-DateTime dt = DateTime.ParseExact(stamp, "yyyyMMddHHmm", null);
-
 Console.WriteLine("Lamp and Lightswitch example");
 
 // Create lightswitch 
