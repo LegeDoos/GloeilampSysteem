@@ -128,7 +128,7 @@ namespace GloeilampSysteem.DataAccessLayer
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@name", lamp.Id);
+                    command.Parameters.AddWithValue("@lampid", lamp.Id);
                     command.ExecuteNonQuery();
                 }
             }
