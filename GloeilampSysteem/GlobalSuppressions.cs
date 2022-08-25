@@ -5,7 +5,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:GloeilampSysteem.DataAccessLayer.DAL.padlock")]
+[assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:GloeilampSysteem.DataAccessLayer.DALSingleton.padlock")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:GloeilampSysteem.DataAccessLayer.JsonDAL.lightswitches")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~F:GloeilampSysteem.DataAccessLayer.DapperDAL.lightSwitches")]
 [assembly: SuppressMessage("Style", "IDE0090:Use 'new(...)'", Justification = "<Pending>", Scope = "member", Target = "~M:GloeilampSysteem.DataAccessLayer.DapperDAL.CreateLightswitch(GloeilampSysteem.BusinessLayer.Lightswitch)~GloeilampSysteem.BusinessLayer.Lightswitch")]

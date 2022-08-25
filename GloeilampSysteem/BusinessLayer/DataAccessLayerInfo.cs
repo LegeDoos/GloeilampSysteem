@@ -16,7 +16,7 @@ namespace GloeilampSysteem.BusinessLayer
         { 
             get
             {
-                return DAL.Instance.GetType().Name;
+                return DALSingleton.Instance.GetType().Name;
             }
         }
     }

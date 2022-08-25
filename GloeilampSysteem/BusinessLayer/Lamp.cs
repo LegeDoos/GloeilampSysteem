@@ -94,7 +94,7 @@ namespace GloeilampSysteem.BusinessLayer
 
             // business model heeft weet van de DAL en kan deze ook benaderen (zie ook usings)
 
-            IDataAccessLayer dal = DAL.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
+            IDataAccessLayer dal = DALSingleton.Instance; // dit is nu een singleton maar kan een nieuwe instantie van de DAL zijn.
             var result = dal.CreateLamp(this);
             this.Id = result.Id;
         }
@@ -106,7 +106,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>The specific lamp</returns>
         public static Lamp Read(int id)
         {
-            IDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DALSingleton.Instance;
             return dal.ReadLamp(id);
         }
 
@@ -116,7 +116,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// <returns>The updated lamp</returns>
         public Lamp Update()
         {
-            IDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DALSingleton.Instance;
             return dal.UpdateLamp(this);
         }
 
@@ -125,7 +125,7 @@ namespace GloeilampSysteem.BusinessLayer
         /// </summary>
         public void Delete()
         {
-            IDataAccessLayer dal = DAL.Instance;
+            IDataAccessLayer dal = DALSingleton.Instance;
             dal.DeleteLamp(this);
         }
     }

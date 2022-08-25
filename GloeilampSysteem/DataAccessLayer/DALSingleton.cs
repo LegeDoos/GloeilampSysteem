@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace GloeilampSysteem.DataAccessLayer
 {
-    public sealed class DAL
+    /// <summary>
+    /// Singleton class for the DAL
+    /// More info: https://en.wikipedia.org/wiki/Singleton_pattern
+    /// </summary>
+    public sealed class DALSingleton
     {
         private static IDataAccessLayer instance = null;
         private static readonly object padlock = new object();
 
-        public DAL()
+        public DALSingleton()
         {
         }
 
