@@ -11,7 +11,7 @@ namespace GloeilampSysteem.DataAccessLayer
 {
     public class DapperDAL : IDataAccessLayer
     {
-        string connectionString = "Server=LB1908062\\MSSQLSERVER2019;Database=RobsHouseLightning; Integrated Security = True";
+        string connectionString = "Server=.;Database=RobsHouseLightning; Integrated Security = True";
         //string connectionString = "Data Source =.; Initial Catalog = GloeilampSysteem; Integrated Security = True";
         List<Lightswitch> lightSwitches = new List<Lightswitch>();
 
