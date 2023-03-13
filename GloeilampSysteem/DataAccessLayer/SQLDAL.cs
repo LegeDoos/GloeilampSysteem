@@ -65,7 +65,7 @@ namespace GloeilampSysteem.DataAccessLayer
                                 string freqString = reader[4].ToString();
                                 if (!string.IsNullOrEmpty(freqString))
                                 {
-                                    var lamp = new Stoboscoop(Int32.Parse(reader[0].ToString()), reader[1].ToString(), Int32.Parse(reader[4].ToString()));
+                                    var lamp = new Stroboscoop(Int32.Parse(reader[0].ToString()), reader[1].ToString(), Int32.Parse(reader[4].ToString()));
                                     lamp.State = reader[2].ToString();
                                     lamp.IsOn = Int32.Parse(reader[3].ToString()) == 1;
                                     lightSwitch.ConnectLamp(lamp);
