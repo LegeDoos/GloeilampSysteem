@@ -6,7 +6,7 @@
     <coordinates>
       <x>54</x>
       <y>126</y>
-      <w>486</w>
+      <w>504</w>
       <h>378</h>
     </coordinates>
     <panel_attributes>Lamp
@@ -15,11 +15,11 @@
 + Name : String
 + IsOn : bool
 + State : String
-- LightSwitch : LightSwitch
++ LightSwitch : LightSwitch
 -
-+TurnOn()
-+TurnOff
-ConnectLightscwitch(LightSwitch _switch)</panel_attributes>
++ TurnOn()
++ TurnOff()
++ ConnectLightswitch(LightSwitch _switch)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -44,16 +44,16 @@ ConnectLightscwitch(LightSwitch _switch)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
+      <x>540</x>
       <y>234</y>
-      <w>396</w>
+      <w>378</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1..n
 &lt; bedient</panel_attributes>
-    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -67,7 +67,7 @@ m2=1..n
 -
 - frequency : int
 -
-+ TurnOn
++ TurnOn()
 </panel_attributes>
     <additional_attributes/>
   </element>
