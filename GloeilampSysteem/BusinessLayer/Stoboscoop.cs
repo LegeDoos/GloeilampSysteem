@@ -8,17 +8,17 @@ namespace GloeilampSysteem.BusinessLayer
 {
     internal class Stoboscoop : Lamp
     {
-        int frequency;
+        public int Frequency { get; private set; }
 
         public Stoboscoop(int id, string name, int freq) : base(id, name)
         {
-            frequency = freq;
+            Frequency = freq;
         }
 
         public override void TurnOn()
         {
             base.TurnOn();
-            int msPauze = 1000 / frequency;
+            int msPauze = 1000 / Frequency;
 
             while (true)
             {
