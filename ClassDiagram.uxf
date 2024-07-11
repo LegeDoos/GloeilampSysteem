@@ -6,20 +6,20 @@
     <coordinates>
       <x>54</x>
       <y>126</y>
-      <w>486</w>
+      <w>504</w>
       <h>378</h>
     </coordinates>
     <panel_attributes>Lamp
 -
-Id : int
-Name : String
-IsOn : bool
-State : String
-LightSwitch : LightSwitch
++ Id : int
++ Name : String
++ IsOn : bool
++ State : String
++ LightSwitch : LightSwitch
 -
-Aanzetten()
-Uitzetten()
-ConnectLightscwitch(LightSwitch _switch)</panel_attributes>
++ TurnOn()
++ TurnOff()
++ ConnectLightswitch(LightSwitch _switch)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -32,27 +32,54 @@ ConnectLightscwitch(LightSwitch _switch)</panel_attributes>
     </coordinates>
     <panel_attributes>LightSwitch
 -
-Id : int
-Name : String
-IsOn : bool
-Lamps : List&lt;Lamp&gt;
++  Id : int
++ Name : String
++ IsOn : bool
++ Lamps : List&lt;Lamp&gt;
 -
-ConnectLamp()
-Toggle()</panel_attributes>
++ ConnectLamp()
++ Toggle()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>522</x>
+      <x>540</x>
       <y>234</y>
-      <w>396</w>
+      <w>378</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=1..n
 &lt; bedient</panel_attributes>
-    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>54</x>
+      <y>630</y>
+      <w>486</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>Stroboscoop
+-
+- frequency : int
+-
++ TurnOn()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>486</y>
+      <w>54</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
 </diagram>

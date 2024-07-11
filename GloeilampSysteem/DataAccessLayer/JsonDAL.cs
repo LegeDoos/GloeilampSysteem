@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 
 namespace GloeilampSysteem.DataAccessLayer
 {
-    /// <summary>
-    /// Dit zou in een betere vorm een singleton worden (singleton pattern) om te voorkomen dat er telkens een nieuwe instance wordt gemaakt!
-    /// </summary>
     public class JsonDAL : IDataAccessLayer
     {
         List<Lightswitch> lightswitches = new List<Lightswitch>();

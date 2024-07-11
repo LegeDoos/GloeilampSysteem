@@ -24,3 +24,4 @@ Er zijn diverse data access layers geïmplementeerd in dit voorbeeld. Per data a
 [DapperDAL_database_script.sql](DapperDAL_database_script.sql)
 * Configureer in de DAL class van de oplossing dat de DapperDal wordt gebruikt.
 
+.
